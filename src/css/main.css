@@ -1,0 +1,82 @@
+@import './fonts.css';
+@import './borders.css';
+@import './justification.css';
+
+body {
+    background-color: rgb(14, 13, 13);
+    color: rgb(246, 246, 241);
+}
+
+.nav-button{
+    width: 25vw;
+}
+
+.nav-area{
+    background-color: aliceblue;
+    max-width: 75vw;
+}
+
+/* .hero-img{
+    
+    width: 75vw;
+} */
+
+.b-img-0{
+    background: url('../../public/code.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-image: linear-gradient(to right, #ffffff, #ffffff7d, #ffffff00); */
+}
+
+.b-img-1{
+    background: url('../../public/chamferPiano.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.b-img-2{
+    background: url('../../public/CelloRender.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.skill-icon{
+    height: 128px;
+    width: 128px;
+    margin: 5%;
+}
+
+@media (min-width: 1801px) {
+    .skill-icon{
+        height: 128px;
+        width: 128px;
+    }
+}
+
+@media (max-width: 1800px) {
+    .skill-icon{
+        height: 112px;
+        width: 112px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .skill-icon{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .skill-icon{
+        height: 94px;
+        width: 94px;
+    }
+}
+
+@media (max-width: 700px) {
+    .skill-icon{
+        height: 88px;
+        width: 88px;
+    }
+}
