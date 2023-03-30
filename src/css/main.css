@@ -16,10 +16,33 @@ body {
     max-width: 75vw;
 }
 
-/* .hero-img{
+.hero-img{
     
-    width: 75vw;
-} */
+    width: 50vw;
+    max-width: 640px;
+}
+
+.area-text{
+    color:white;
+    background-color: rgba(0, 0, 0, 0.534);
+}
+
+.area-text-skills{
+    color:rgb(0, 247, 255);
+    background-color: rgba(0, 0, 0, 0.534);
+    margin-bottom: -40px;
+}
+
+.entry-article{
+    background-color: rgba(0, 0, 0, 0.534);
+}
+
+.entry-title{
+    border-bottom: solid 2px white;
+    color: rgb(255, 191, 0);
+    width: fit-content;
+    /* margin-left: 10%; */
+}
 
 .b-img-0{
     background: url('../../public/code.png');
