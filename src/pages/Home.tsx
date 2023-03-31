@@ -50,7 +50,7 @@ export default function Home() {
                       </p>
                       
                     </article>
-                    
+                    <a href="/#"> Github </a>
                   </div>
                   <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
                     <span>C++</span> | <span>Javascript</span> | <span>Typescript</span> | <span>HTML5</span> | <span>CSS3</span> | <span>Python</span> | <span>Node.js</span> | <span>React</span> | <span>Redux</span> | <span>MongoDB</span> | <span>Firebase</span> | <span>Unreal Engine</span> | <span>Git</span>
@@ -92,9 +92,10 @@ export default function Home() {
                         Exercitationem?
                       </p>
                     </article>
+                    <a href="/#"> Portfolio </a>
                   </div>
                   <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
-                    <span>C++</span> | <span>Javascript</span> | <span>Typescript</span> | <span>HTML5</span> | <span>CSS3</span> | <span>Python</span> | <span>Node.js</span> | <span>React</span> | <span>Redux</span> | <span>MongoDB</span> | <span>Firebase</span> | <span>Unreal Engine</span> | <span>Git</span>
+                    <span>Blender</span> | <span>Maya</span> | <span>Substance Painter</span> | <span>Substance Designer</span> | <span>Unreal Engine</span> | <span>Three.js</span>
                   </p>
                 </div>
                 <section className="p3 m3">
