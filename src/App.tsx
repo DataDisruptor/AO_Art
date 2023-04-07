@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Canvas3D from './components/BackgroundScene/Canvas3D/Canvas3D';
+import LandingCanvas from './components/BackgroundScene/Canvas3D/LandingCanvas';
 
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/test' element={<Canvas3D targetSubScene=''/>}/>
+        <Route path='/test' element={<LandingCanvas targetSubScene=''/>}/>
+        <Route path='/test0' element={<Canvas3D targetSubScene='' renderStartCallback={(e) => {}}/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -14,32 +14,39 @@ export default function Home() {
   */
   const [skillView, setSkillView] = useState('')
   const [hasLanded, setHasLanded] = useState(false)
-
+  const [loaded, setLoaded] = useState(false);
   
+  const assetsLoaded = (e : any) => {
+    setLoaded(true)
+    console.log('AtHome: ASSETS LOADED', e);
+  }
 
   return (
     
     <div className="canvas-container">
-      <Canvas3D targetSubScene={skillView}/>
+      <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/>
       {!hasLanded &&
-      <div className="p7 m7 j-center flex">
-        <button onClick={() => {setHasLanded(true)}}>ENTER</button>
+      <div className="j-center flex va-mid">
+        {loaded && <button className="land-button" onClick={() => {setHasLanded(true)}}>ENTER</button>}
       </div>}
       { hasLanded && 
       <div className="flex j-center">
         <div className="f-dir-col jt-center">
-          <p className="p7 m7">
-            <h1 className='font-1'>Adam Ocheri</h1>
-            <h2 className='font-3'>Tech | Art</h2>
-          </p>
+          <div className="pb7 mb7" style={{marginTop: '200px', paddingTop: '200px'}}>
+            <h1 className='font-4 s-xxx'>Adam Ocheri</h1>
+            <h2 className='font-11 s3 flex f-wrap j-even pt7 pb7'><span>Tech</span> <span>Art</span></h2>
+          </div>
           
           {/* <p>
             <img src="http://placekitten.com/200/300" alt="img"/>
           </p> */}
-          <section>
-            <button className="nav-button" onClick={()=> setSkillView('programming')}>Programming</button>  
+          {/* <button className="nav-button" onClick={()=> setSkillView('programming')}>Programming</button>  
             <button className="nav-button" onClick={()=> setSkillView('3d')}>3D Art</button>  
-            <button className="nav-button" onClick={()=> setSkillView('music')}>Music</button>
+            <button className="nav-button" onClick={()=> setSkillView('music')}>Music</button> */}
+          {true && <section className="p5">
+            <button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? 'btn-selected' : 'btn-normal'}`} onClick={()=> setSkillView('programming')}>Programming</button>  
+            <button className={`nav-button font-1 s2 ${ skillView === '3d' ? 'btn-selected' : 'btn-normal'}`} onClick={()=> setSkillView('3d')}>3D Art</button>  
+            <button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? 'btn-selected' : 'btn-normal'}`} onClick={()=> setSkillView('music')}>Music</button>
             <article className="nav-area black">
               {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
               {skillView === 'programming' && 
@@ -62,7 +69,7 @@ export default function Home() {
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p5">
                         <h2 className="entry-title font-3 s3">Regime Change Game</h2>
-                        <div className="flex  j-center">
+                        <div className="flex j-center" style={{maxWidth: '50vw'}}>
                           <ReactPlayer url={'./scavangers.mp4'} controls={true}/>
                         </div>
                         <p className="font-1 s2 white"> 
@@ -162,7 +169,7 @@ export default function Home() {
                 </div>
               }
             </article>  
-          </section> 
+          </section> }
         </div>
       </div>}
     </div>

@@ -10,10 +10,57 @@ body {
 
 .nav-button{
     width: 25vw;
+    /* border-radius: 2px; */
+    border-color: aqua;
+    color: aqua;
+    background-color: rgb(234, 229, 229);
+    padding: 2%;
+}
+
+.nav-button:hover{
+    background-color: rgb(255, 200, 0);
+    color: white;
+}
+
+.btn-left{
+    border-top-left-radius: 10px;
+}
+
+.btn-right{
+    border-top-right-radius: 10px;
+}
+
+.btn-normal{
+    background-color: rgb(12, 3, 3);
+}
+
+.btn-selcted{
+    background-color: rgb(255, 255, 255);
+}
+
+.land-button{
+    border-radius: 12px;
+    font-size: 32pt;
+    /* padding-top: 15px; */
+    color: rgb(255, 174, 0);
+    background-color: rgba(100, 148, 237, 0.116);
+}
+.va-mid{
+    padding-top: 30%;
+    vertical-align: middle;
+}
+
+.ppe{
+    /* width: 2px;
+    height: 2px; */
+    padding-left: 5px;
+    height: 1px;
+    
+
 }
 
 .nav-area{
-    background-color: rgba(240, 248, 255, 0.782);
+    background-color: rgba(240, 248, 255, 0.93);
     max-width: 75vw;
 }
 
@@ -25,7 +72,7 @@ body {
 
 .area-text{
     color:white;
-    background-color: rgba(0, 0, 0, 0.534);
+    background-color: rgba(0, 0, 0, 0.456);
 }
 
 .area-text-skills{
@@ -102,6 +149,29 @@ body {
     .skill-icon{
         height: 88px;
         width: 88px;
+    }
+}
+
+@media (max-width: 574px) {
+    .nav-button{
+        width: 100%;
+        /* flex-direction: column; */
+    }
+    .nav-area{
+        max-width:unset;
+    }
+    /* .btn-left{
+        border-top-right-radius: 10px;
+    }
+    .btn-left{
+        border-top-right-radius: 0px;
+    } */
+    .btn-left{
+        border-top-right-radius: 10px;
+    }
+    
+    .btn-right{
+        border-top-right-radius: 0px;
     }
 }
 

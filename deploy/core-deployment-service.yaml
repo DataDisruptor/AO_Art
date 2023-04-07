@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-deployment-service
+  labels:
+    app: ao-art
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ao-art
+  template:
+    metadata:
+      labels:
+        app: ao-art
+    spec:
+      containers:
+        - name: ao-art-container
+          image: docker.io/ao5000cookiesh/ao-art:v1
+          ports:
+            - containerPort: 3000
