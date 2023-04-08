@@ -240,7 +240,7 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       <ambientLight castShadow={true} intensity={0.3}/>
       <pointLight position={[10, 10, 10]} />
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
-      <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} />
+      {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
       {/* <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
       <Model3D url='/robot_00.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
