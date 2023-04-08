@@ -188,10 +188,10 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
   }, [gltf])
 
   //Hook to animation thread - if mesh needs per frame update
-  useFrame(({ clock }) => {
-    //meshRef.current.rotation.y = clock.getElapsedTime() / 2;  //example
+  // useFrame(({ clock }) => {
+  //   //meshRef.current.rotation.y = clock.getElapsedTime() / 2;  //example
     
-  });
+  // });
 
   //JSX
   return (
@@ -242,9 +242,9 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
       {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
-      {/* <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
+      <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
       <Model3D url='/robot_00.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
-      <DMesh url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
+      <DMesh url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/>
       {/* <Model3D url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       {/* <axesHelper/> */}
       
