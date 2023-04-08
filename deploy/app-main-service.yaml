@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: app-main-service
   labels:
-    app: img-1
+    app: ao-art
 spec:
   selector:
-    app: img-1
+    app: ao-art
   ports:
     - name: http
       port: 80

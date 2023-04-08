@@ -184,6 +184,13 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
 //carpentry_shop_02_1k.hdr
 export default function LandingCanvas({targetSubScene} : {targetSubScene : string}) {
 
+  // const tjs = useThree();
+  
+  useEffect(()=> {
+    return () => {
+      // tjs.gl.forceContextLoss();
+    }
+  }, [])
     return(
       <Canvas hidden={true} style={{ width: '100%', height: '100%', display: 'grid', position: 'absolute', zIndex: -1, minHeight: '95vh'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
       <Environment 

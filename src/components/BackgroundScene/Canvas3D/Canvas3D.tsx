@@ -5,6 +5,8 @@ import { Stats, OrbitControls, Environment, useGLTF, useBounds, Bounds } from '@
 import { Canvas, useFrame, ThreeElements, useThree, useLoader, events, createEvents } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import LandingCanvas from './LandingCanvas'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import DMesh from '../Objects/DracoMesh/DMesh'
 
 // document.addEventListener('requestAnimationFrame', (e) => {
 //   console.log('My Event listener Fired!');
@@ -39,14 +41,18 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   // speed /= 100;
 
   const initZLocation = 150;
-  const target1_Location = new THREE.Vector3(-21, 6, 20);
+  const target1_Location = new THREE.Vector3(-21, 6.2, 20);
   const target1_Rotation = new THREE.Vector3(0, -5, 0);
 
   const target2_Location = new THREE.Vector3(0, 10.4, -11);
   const target2_Rotation = new THREE.Vector3(-7.1, 0, 0);
 
-  const target3_Location = new THREE.Vector3(9, 0.4,20);
-  const target3_Rotation = new THREE.Vector3(0, 5, 0);
+  const target3_Location = new THREE.Vector3(50, 0.4, -73);
+  const target3_Rotation = new THREE.Vector3(-5.8, 0, -6.28);
+
+  // const target3_Location = new THREE.Vector3(9.1, 0.1,19.9);
+  // const target3_Rotation = new THREE.Vector3(-1.2, 4.6, 0);
+
 
   const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,initZLocation))
   const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
@@ -123,16 +129,17 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
 
     return new THREE.Vector3(currentX, currentY, currentZ);
   }
-
+  const eulerOrder :THREE.EulerOrder = 'XYZ'
   useFrame((state, delta, frame) => {
     // console.log(state, delta, frame)
-    const currentRotation = new THREE.Vector3(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    const currentRotation = new THREE.Euler(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    const newRot = new THREE.Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
     
     const newLocation = lerp(camera.position, targetLocation, delta);
-    const newRotation = lerp(currentRotation, targetRotation, delta);
+    const newRotation = lerp(newRot, targetRotation, delta);
 
     camera.position.set(newLocation.x, newLocation.y, newLocation.z);
-    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z);
+    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z, eulerOrder);
   })
 
   return <perspectiveCamera/>
@@ -143,15 +150,18 @@ export type Asset = {
   position: number[] | any;
   rotation: number[] | any;
   scale: number[] | any;
-  renderStartCallback : (e : any ) => void;
+  useDraco?: boolean;
 }
 
-const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1, 1], renderStartCallback } : Asset) => {
+const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1, 1] } : Asset) => {
   const gltf : any = useLoader(GLTFLoader, url);
   const [modelReady, setModelReady] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  let isLoaded = false;
-  const [isMounted, setIsMounted] = useState(false);
+  // const loadManager : THREE.LoadingManager = THREE.DefaultLoadingManager;
+  // const dMesh = new DRACOLoader(loadManager);
+  // dMesh.load(url, (e)=> {
+  //   console.log('DracoLoaded!!!', e)
+  // })
+  
   useEffect(() => {
     //Specific Emission
     // if(gltf?.materials?.MetalHeart?.emissiveIntensity){
@@ -165,32 +175,17 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
 
     //Global Emission
     if(gltf?.materials){
-      for (let mat in gltf.materials){
-        for(let shader in gltf.materials[mat]){
-          if(shader === 'emissiveIntensity'){
-            gltf.materials[mat][shader] = 3;
-          }
-        }
-      }
-      setModelReady(true);
-      // ++instancesLoaded;
-      // if(instancesLoaded === 3){
-      //   console.log('Should now be loaded.............')
+      // for (let mat in gltf.materials){
+      //   for(let shader in gltf.materials[mat]){
+      //     if(shader === 'emissiveIntensity'){
+      //       gltf.materials[mat][shader] = 3;
+      //     }
+      //   }
       // }
+      setModelReady(true);
       console.log(gltf)
     }
   }, [gltf])
-
-  useEffect(()=> {
-    setIsMounted(true);
-  }, [])
-
-  useEffect(()=>{
-    console.log('Model is Ready?', modelReady);
-    if(modelReady && loaded && isMounted){
-      renderStartCallback({});
-    }
-  },[modelReady, loaded, isMounted])
 
   //Hook to animation thread - if mesh needs per frame update
   useFrame(({ clock }) => {
@@ -198,12 +193,9 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
     
   });
 
-  const fired = (e : any) => {
-    console.log(e);
-  }
   //JSX
   return (
-    <mesh position={position} rotation={rotation} scale={scale} castShadow={true} receiveShadow={true} onUpdate={(e)=> {setLoaded((p) => true)}}>
+    <mesh position={position} rotation={rotation} scale={scale} frustumCulled={true}>
       <primitive object={gltf.scene} />
     </mesh>
   );
@@ -215,38 +207,48 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
 //carpentry_shop_02_1k.hdr
 export default function Canvas3D({targetSubScene, renderStartCallback} : {targetSubScene : string, renderStartCallback : (e : any) => void}) {
 
+  // const three = useThree();
   const canvasRef : any = useRef();
   const [loaded, setLoaded] = useState(false);
 
-  const fired = (e : any) => {
-    console.log('AtCanvas', e);
+  const loadManager : THREE.LoadingManager = THREE.DefaultLoadingManager;
+  loadManager.onLoad = () => {
     setLoaded(true);
-  }
+      renderStartCallback('RenderStartCallback - OnLoad - Content LOADED!!!')
+  };
+  loadManager.onProgress = ((url : any)=> {
+    console.log('Currently loading........', url)
+  })
+  // loadManager.setURLModifier((url) => { 
+  //   console.log('setURLModifier', url)
+  //   return url;
+  // });
+    
+  // useEffect(()=> {
+  //   console.log('loadManager', loadManager)
+  // }, [loadManager])
 
   return (
     <>
     {!loaded && <LandingCanvas targetSubScene='' />}
-    <Canvas ref={canvasRef} hidden={false} style={{ width: '100%', height: '100%', display: 'grid', position: 'absolute', zIndex: -1, minHeight: '95vh'}}>
+    {<Canvas ref={canvasRef} hidden={false} style={{ width: '100%', height: '100%', display: 'flex', position: 'absolute', zIndex: -1, minHeight: '95vh'}}>
       <Environment 
         files="./HDR_Free_City_Night_Lights_Ref.hdr" 
         background={true}
         blur={0.5}
       />
-      <ambientLight/>
+      <ambientLight castShadow={true} intensity={0.3}/>
       <pointLight position={[10, 10, 10]} />
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
-      {/* <mesh position={[0,-1,0]}>
-        <boxGeometry args={[45,1,60]} />
-        <meshLambertMaterial color={'#111116'}/>
-      </mesh> */}
-      <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} renderStartCallback={(e) => {}}/>
+      <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} />
       {/*3d Assets */}
-      <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} renderStartCallback={(e) => {}}/>
-      <Model3D url='/robot_00.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} renderStartCallback={(e) => {}}/>
-      <Model3D url='/piano.glb' position={[10,-0.56,20]} rotation={[0,3,0]} scale={[0.3,0.3,0.3]} renderStartCallback={(e) => {fired(e); renderStartCallback(e)}}/>
+      <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
+      <Model3D url='/robot_00.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
+      {/* <Model3D url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
+      <DMesh url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/>
       {/* <axesHelper/> */}
       
-    </Canvas>
+    </Canvas>}
     
     </>
     
