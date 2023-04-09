@@ -99,7 +99,7 @@ export default function Home() {
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
-                        <div className="flex j-center " style={{maxWidth: '100vw'}}>
+                        <div className="flex j-center ">
                           <ReactPlayer url={'./scavangers.mp4'} controls={true} />
                         </div>
                         <p className="font-1 s2 white jt-left p4"> 
@@ -115,7 +115,8 @@ export default function Home() {
                       <span>C++</span> | <span>Javascript</span> | <span>Typescript</span> | <span>HTML5</span> | <span>CSS3</span> | <span>Python</span> | <span>Node.js</span> | <span>React</span> | <span>Redux</span> | <span>MongoDB</span> | <span>Firebase</span> | <span>Unreal Engine</span> | <span>Git</span>
                     </p>
                   </div> 
-                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
+                  <section className="p3 m3">
+                    <div className="p3 m3">
                       <Icon icon='logos:c-plusplus' className="m2 skill-icon"/>
                       <Icon icon='skill-icons:javascript' className="m2 skill-icon"/>
                       <Icon icon='skill-icons:typescript' className="m2 skill-icon"/>
@@ -129,7 +130,8 @@ export default function Home() {
                       <Icon icon='logos:firebase' className="m2 skill-icon"/>
                       <Icon icon='logos:unrealengine'  className="m2 skill-icon"/>
                       <Icon icon='icon-park:github' className="m2 skill-icon"/>
-                    </section> 
+                    </div>
+                  </section> 
                 </div> 
               }
               {/*3D----------------------------------------------------------------------3D-----------------------------------------------------------3D */}
@@ -166,13 +168,15 @@ export default function Home() {
                       <span>Blender</span> | <span>Maya</span> | <span>Substance Painter</span> | <span>Substance Designer</span> | <span>Unreal Engine</span> | <span>Three.js</span>
                     </p>
                   </div>
-                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
+                  <section className="p3 m3 ">
+                    <div className="p3 m3">
                       <Icon icon='logos:blender' className="m2 skill-icon"/>
                       <Icon icon='vscode-icons:file-type-maya' className="m2 skill-icon"/>
                       <img src="sp.png" alt="img" className="m2 skill-icon"/>
                       <img src="sd5.png" alt="img" className="m2 skill-icon"/>
                       <Icon icon='logos:unrealengine' className="m2 skill-icon"/>
-                    </section>
+                    </div>  
+                  </section>
                 </div>
               }
               {/*Music----------------------------------------------------------------------Music-----------------------------------------------------------Music */}
@@ -221,7 +225,8 @@ export default function Home() {
                       <span>Ableton</span> | <span>Cubase</span> | <span>Music Production</span> | <span>Mixing</span> | <span>Mastering</span> | <span>Guitar</span> | <span>Violin</span> | <span>Cello</span> | <span>Piano</span> | <span>French Horn</span> 
                     </p>
                   </div>
-                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
+                  <section className="p3 m3">
+                    <div className="p3 m3">
                       <Icon icon='skill-icons:ableton-dark' className="m2 skill-icon"/>
                       <img src="logo-cubase.svg" alt="img" className="m2 skill-icon"/>
                       <img src="sound-mix.svg" alt="img" className="m2 skill-icon"/>
@@ -229,7 +234,8 @@ export default function Home() {
                       <Icon icon='noto:violin' className="m2 skill-icon"/>
                       <img src="grand-piano.svg" alt="img" className="m2 skill-icon"/>
                       <img src="french-horn.svg" alt="img" className="m2 skill-icon"/>
-                    </section>
+                    </div>
+                  </section>
                 </div>
               }
             </article>  
