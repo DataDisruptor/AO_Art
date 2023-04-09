@@ -184,7 +184,7 @@ export default function Home() {
                     <div className='flex j-center jt-center'>
                       <h2 className="entry-title font-3 s3 m6">Original Music</h2>
                     </div>
-                    <div className='p5 m6 j-center flex'>
+                    {/* <div className='p5 m6 j-center flex'>
                       <section className='music-player p3'>
                         <div className='j-even flex f-dir-row p4'>
                           <div className='flex f-dir-row f-basis-5'>
@@ -197,10 +197,7 @@ export default function Home() {
                             </div>
                             <div className='music-player-button m1'>
                               <Icon onClick={()=> onPlaylistUpdate(1)} icon='mdi:next-title' width='64px' height='64px' className=''/>
-                            </div>
-                            
-                            {/* <button className='music-player-button s4 font-2' onClick={()=> onPlaylistUpdate(-1)}>{'<<'}</button>
-                            <button className='music-player-button s4 font-2' onClick={()=> onPlaylistUpdate(1)}>{'>>'}</button> */}
+                            </div>            
                           </div>
                           
                         </div>
@@ -208,7 +205,7 @@ export default function Home() {
                           <ReactPlayer ref={musicPlayer} height={'40px'} width={'35vw'} url={song} controls={true}/> 
                         </div>
                       </section>
-                    </div>
+                    </div> */}
                     {/*width="560" height="315" */}
                     <div className='flex j-center jt-center'>
                       <h2 className="entry-title font-3 s3 m6">Original Music Tributes</h2>
