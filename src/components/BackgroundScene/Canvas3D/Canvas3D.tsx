@@ -132,14 +132,14 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   const eulerOrder :THREE.EulerOrder = 'XYZ'
   useFrame((state, delta, frame) => {
     // console.log(state, delta, frame)
-    const currentRotation = new THREE.Euler(camera.rotation.x, camera.rotation.y, camera.rotation.z);
-    const newRot = new THREE.Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
+    // const currentRotation = new THREE.Euler(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    // const newRot = new THREE.Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
     
-    const newLocation = lerp(camera.position, targetLocation, delta);
-    const newRotation = lerp(newRot, targetRotation, delta);
+    // const newLocation = lerp(camera.position, targetLocation, delta);
+    // const newRotation = lerp(newRot, targetRotation, delta);
 
-    camera.position.set(newLocation.x, newLocation.y, newLocation.z);
-    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z, eulerOrder);
+    // camera.position.set(newLocation.x, newLocation.y, newLocation.z);
+    // camera.rotation.set(newRotation.x, newRotation.y, newRotation.z, eulerOrder);
   })
 
   return <perspectiveCamera/>
