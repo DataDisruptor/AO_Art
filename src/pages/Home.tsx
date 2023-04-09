@@ -99,15 +99,14 @@ export default function Home() {
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
-                        <div className="flex j-center " style={{maxWidth: '100%'}}>
-                          <ReactPlayer url={'./scavangers.mp4'} controls={true} />
+                        <div className="flex j-center " >
+                          <ReactPlayer url={'./scavangers.mp4'} controls={true} width={'50%'}/>
                         </div>
                         <p className="font-1 s2 white jt-left p4"> 
                           We all know that the end of mankind by the machine uprising is getting nearer any day now! 
                           So why not glimpse into the future we'll never get to see? <br/>
                           In early development, Regime Change is a world where authority, rules and power remain - even without any human in sight.
                         </p>
-                        
                       </article>
                       {/* <a href="/#"> Github </a> */}
                     </div>
