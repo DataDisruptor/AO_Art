@@ -99,7 +99,7 @@ export default function Home() {
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
-                        <div className="flex j-center hero-img">
+                        <div className="flex j-center " style={{maxWidth: '100%'}}>
                           <ReactPlayer url={'./scavangers.mp4'} controls={true} />
                         </div>
                         <p className="font-1 s2 white jt-left p4"> 
