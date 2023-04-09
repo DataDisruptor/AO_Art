@@ -54,14 +54,14 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   // const target3_Rotation = new THREE.Vector3(-1.2, 4.6, 0);
 
 
-  const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,initZLocation))
-  const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
+  // const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,initZLocation))
+  // const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
   const [initialized, setInitialized] = useState(false);
 
   const {camera} = useThree();
 
   if(!initialized){
-    camera.position.set(0,0, initZLocation);
+    camera.position.set(0,7.7, -11);
   }
   
 
@@ -69,20 +69,20 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
     if(!initialized){
       setInitialized(true);
     }
-    
+    console.log('Camera Location:', camera.position)
   },[camera])
   
 
 
 
-  useEffect(() => {
-    switch (targetSubScene) {
-      case '': setTargetLocation(new THREE.Vector3(0,-200,initZLocation)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
-      case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
-      case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
-      case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
-    }
-  }, [targetSubScene])
+  // useEffect(() => {
+  //   switch (targetSubScene) {
+  //     case '': setTargetLocation(new THREE.Vector3(0,-200,initZLocation)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
+  //     case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
+  //     case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
+  //     case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
+  //   }
+  // }, [targetSubScene])
   
 
   
@@ -230,8 +230,8 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
 
   return (
     <>
-    {!loaded && <LandingCanvas targetSubScene='' />}
-    {<Canvas ref={canvasRef} hidden={false} style={{ width: '100%', height: '100%', display: 'flex', position: 'absolute', zIndex: -1, minHeight: '95vh'}}>
+    {/* {!loaded && <LandingCanvas targetSubScene='' />} */}
+    {<Canvas ref={canvasRef} hidden={false} style={{ width: '100%', height: '100%', position: 'absolute', zIndex: -1, minHeight: '95vh'}}>
       <Environment 
         files="./HDR_Free_City_Night_Lights_Ref.hdr" 
         background={true}
@@ -242,9 +242,9 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
       {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
-      <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
+      {/* <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       <DMesh url='/robot_t.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
-      <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/>
+      {/* <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       
       {/* <Model3D url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       {/* <axesHelper/> */}
