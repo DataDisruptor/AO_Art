@@ -47,7 +47,7 @@ export default function Home() {
   return (
     
     <div className="canvas-container">
-      {/* <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/> */}
+      <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/>
       {/* {!hasLanded &&
       <div className="j-center flex va-mid">
         {loaded && <button className="land-button" onClick={() => {setHasLanded(true)}}>ENTER</button>}
@@ -92,7 +92,7 @@ export default function Home() {
                           By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
                           you are set out to accomplish, no matter how long it may take. <br/>
                           <div className='jt-center'>
-                            <a  href='https://strategize.app.vercel'>Join Strategize Now!</a>
+                            <a  href='https://strategize-fe.vercel.app/'>Join Strategize Now!</a>
                           </div>
                           
                         </p>

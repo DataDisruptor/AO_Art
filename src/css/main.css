@@ -8,10 +8,10 @@ body {
     margin: 0;
     padding: 0;
     /* overflow: hidden; */
-    background: url('../../public/back.png');
+    /* background: url('../../public/back.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
+    background-position: center center; */
 }
 
 .nav-button{
