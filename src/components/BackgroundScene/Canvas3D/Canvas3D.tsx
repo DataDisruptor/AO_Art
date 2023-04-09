@@ -214,10 +214,10 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
   const loadManager : THREE.LoadingManager = THREE.DefaultLoadingManager;
   loadManager.onLoad = () => {
     setLoaded(true);
-      renderStartCallback('RenderStartCallback - OnLoad - Content LOADED!!!')
+    renderStartCallback('RenderStartCallback - OnLoad - Content LOADED!!!')
   };
   loadManager.onProgress = ((url : any)=> {
-    console.log('Currently loading........', url)
+    // console.log('Currently loading........', url)
   })
   // loadManager.setURLModifier((url) => { 
   //   console.log('setURLModifier', url)
@@ -242,9 +242,10 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
       {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
-      <Model3D url='/3dCode_01.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
-      <Model3D url='/robot_t.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
+      <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
+      <DMesh url='/robot_t.glb' position={[0,-0.53,-15]} rotation={[0,0,0]} scale={[1,1,1]} />
       <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/>
+      
       {/* <Model3D url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       {/* <axesHelper/> */}
       
