@@ -14,6 +14,13 @@ body {
     background-position: center center;
 }
 
+.main-title {
+    background-image: url('../../public/b8.jpg');
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
 .nav-button{
     width: 25vw;
     /* border-radius: 2px; */
