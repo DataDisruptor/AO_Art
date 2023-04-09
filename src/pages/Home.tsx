@@ -82,37 +82,40 @@ export default function Home() {
                         a creative and interactive medium to enrich our lives, and a tool we can actively utilize to solve real world problems.
                         Therefore, I have found myself immersed in the world of software development - constantly learning, creating and learning again, on the move.
                       </p>
-                      <article className="p5 entry-article m5"> {/*flex j-center */}
+                      <article className="p1 entry-article m5"> {/*flex j-center */}
                         <h2 className="entry-title font-3 s3">Strategize <span className='teal'>|</span> Web App</h2>
                         <img src="strategize_logo.png" alt="img" className="hero-img"/>
-                        <p className="font-1 s2 white jt-left"> 
+                        <p className="font-1 s2 white jt-left p4"> 
                           Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
                           As a solution for any individual or team, Strategize was created with the purpose of helping you dive into complex details of any task, while keeping a 
                           birds-eye view over the scope of your entire stretch goals. <br/>
                           By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
-                          you are set out to accomplish, no matter how long it may take.
-                          -STRATEGIZE LINK-
+                          you are set out to accomplish, no matter how long it may take. <br/>
+                          <div className='jt-center'>
+                            <a  href='https://strategize.app.vercel'>Join Strategize Now!</a>
+                          </div>
+                          
                         </p>
                       </article>
-                      <article className="flex j-center f-dir-col entry-article m5 p5">
+                      <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
-                        <div className="flex j-center" style={{maxWidth: '50vw'}}>
-                          <ReactPlayer url={'./scavangers.mp4'} controls={true}/>
+                        <div className="flex j-center " style={{maxWidth: '100vw'}}>
+                          <ReactPlayer url={'./scavangers.mp4'} controls={true} />
                         </div>
-                        <p className="font-1 s2 white jt-left"> 
+                        <p className="font-1 s2 white jt-left p4"> 
                           We all know that the end of mankind by the machine uprising is getting nearer any day now! 
                           So why not glimpse into the future we'll never get to see? <br/>
                           In early development, Regime Change is a world where authority, rules and power remain - even without any human in sight.
                         </p>
                         
                       </article>
-                      <a href="/#"> Github </a>
+                      {/* <a href="/#"> Github </a> */}
                     </div>
                     <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
                       <span>C++</span> | <span>Javascript</span> | <span>Typescript</span> | <span>HTML5</span> | <span>CSS3</span> | <span>Python</span> | <span>Node.js</span> | <span>React</span> | <span>Redux</span> | <span>MongoDB</span> | <span>Firebase</span> | <span>Unreal Engine</span> | <span>Git</span>
                     </p>
                   </div> 
-                  <section className="p3 m3">
+                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
                       <Icon icon='logos:c-plusplus' className="m2 skill-icon"/>
                       <Icon icon='skill-icons:javascript' className="m2 skill-icon"/>
                       <Icon icon='skill-icons:typescript' className="m2 skill-icon"/>
@@ -163,7 +166,7 @@ export default function Home() {
                       <span>Blender</span> | <span>Maya</span> | <span>Substance Painter</span> | <span>Substance Designer</span> | <span>Unreal Engine</span> | <span>Three.js</span>
                     </p>
                   </div>
-                  <section className="p3 m3">
+                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
                       <Icon icon='logos:blender' className="m2 skill-icon"/>
                       <Icon icon='vscode-icons:file-type-maya' className="m2 skill-icon"/>
                       <img src="sp.png" alt="img" className="m2 skill-icon"/>
@@ -193,16 +196,16 @@ export default function Home() {
                           </div>
                           <div className='flex f-dir-row'>
                             <div className='music-player-button m1'>
-                              <Icon onClick={()=> onPlaylistUpdate(-1)} icon='mdi:previous-title' width='64px' height='64px' className=''/>
+                              <Icon onClick={()=> onPlaylistUpdate(-1)} icon='mdi:previous-title' width='48px' height='48px' className=''/>
                             </div>
                             <div className='music-player-button m1'>
-                              <Icon onClick={()=> onPlaylistUpdate(1)} icon='mdi:next-title' width='64px' height='64px' className=''/>
+                              <Icon onClick={()=> onPlaylistUpdate(1)} icon='mdi:next-title' width='48px' height='48px' className=''/>
                             </div>            
                           </div>
                           
                         </div>
                         <div className='j-center flex '>
-                          <ReactPlayer ref={musicPlayer} height={'40px'} width={'35vw'} url={song} controls={true}/> 
+                          <ReactPlayer ref={musicPlayer} height={'40px'} width={'45vw'} url={song} controls={true} style={{minHeight: '50px'}}/> 
                         </div>
                       </section>
                     </div>
@@ -218,7 +221,7 @@ export default function Home() {
                       <span>Ableton</span> | <span>Cubase</span> | <span>Music Production</span> | <span>Mixing</span> | <span>Mastering</span> | <span>Guitar</span> | <span>Violin</span> | <span>Cello</span> | <span>Piano</span> | <span>French Horn</span> 
                     </p>
                   </div>
-                  <section className="p3 m3">
+                  <section className="p3 m3 mt-5 mb-5 pt-5 pb-5">
                       <Icon icon='skill-icons:ableton-dark' className="m2 skill-icon"/>
                       <img src="logo-cubase.svg" alt="img" className="m2 skill-icon"/>
                       <img src="sound-mix.svg" alt="img" className="m2 skill-icon"/>
