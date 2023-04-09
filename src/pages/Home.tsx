@@ -47,12 +47,12 @@ export default function Home() {
   return (
     
     <div className="canvas-container">
-      <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/>
+      {/* <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/> */}
       {/* {!hasLanded &&
       <div className="j-center flex va-mid">
         {loaded && <button className="land-button" onClick={() => {setHasLanded(true)}}>ENTER</button>}
       </div>} */}
-      { loaded && 
+      { true && 
       <div className="flex j-center">
         <div className="f-dir-col jt-center">
           <div className="pb7 mb7" style={{marginTop: '100px', paddingTop: '100px'}}>
