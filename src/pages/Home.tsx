@@ -55,7 +55,7 @@ export default function Home() {
       { loaded && 
       <div className="flex j-center">
         <div className="f-dir-col jt-center">
-          <div className="pb7 mb7" style={{marginTop: '200px', paddingTop: '200px'}}>
+          <div className="pb7 mb7" style={{marginTop: '100px', paddingTop: '100px'}}>
             <h1 className='font-4 s-xxx'>Adam Ocheri</h1>
             <h2 className='font-11 s3 flex f-wrap j-even pt7 pb7'><span>Tech</span> <span>Art</span></h2>
           </div>

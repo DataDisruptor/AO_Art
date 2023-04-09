@@ -8,6 +8,10 @@ body {
     margin: 0;
     padding: 0;
     /* overflow: hidden; */
+    /* background: url('../../public/chamferPiano.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; */
 }
 
 .nav-button{
