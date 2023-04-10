@@ -212,7 +212,7 @@ export default function GenericCanvas() {
       </mesh> */}
       {/* <Model3D url='/ao.glb' position={[0,-1.5,-2]} rotation={[0,-7.9,0]} scale={[0.7,0.7,0.7]} animated={true}/>
       <Model3D url='/loading.glb' position={[0,-1.5,-2]} rotation={[0,-8,0]} scale={[0.4,0.4,0.4]} animated={true}/> */}
-      <DMesh url='/cello_t2.glb' position={[0,-2.2,-2]} rotation={[0,-1.55,0]} scale={[1,1,1]} />
+      <DMesh url='/robot_t.glb' position={[0,-2.8,-4]} rotation={[0,0,0]} scale={[0.5,0.5,0.5]} />
       {/* <Model3D url='/loadrob.glb' position={[-70,-65,-90]} rotation={[0,8,0]} scale={[1,1,1]} animated={true}/> */}
       {/* <Model3D url='/loadrob.glb' position={[-0.75,-0.77,-1]} rotation={[0,8,0]} scale={[0.01,0.01,0.01]} animated={true}/> */}
     </Canvas>
