@@ -244,7 +244,7 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
       {/* <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
-      <DMesh url='/cello_t2.glb' position={[0,-0.53,-15]} rotation={[0,-1.55,0]} scale={[1,1,1]} />
+      {/* <DMesh url='/cello_t2.glb' position={[0,-0.53,-15]} rotation={[0,-1.55,0]} scale={[1,1,1]} /> */}
       
       {/* <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       

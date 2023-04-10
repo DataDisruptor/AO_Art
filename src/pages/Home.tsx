@@ -85,17 +85,17 @@ export default function Home() {
                       <article className="p1 entry-article m5"> {/*flex j-center */}
                         <h2 className="entry-title font-3 s3">Strategize <span className='teal'>|</span> Web App</h2>
                         <img src="strategize_logo.png" alt="img" className="hero-img"/>
-                        <p className="font-1 s2 white jt-left p4"> 
+                        <div className="font-1 s2 white jt-left p4"> 
                           Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
                           As a solution for any individual or team, Strategize was created with the purpose of helping you dive into complex details of any task, while keeping a 
                           birds-eye view over the scope of your entire stretch goals. <br/>
                           By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
                           you are set out to accomplish, no matter how long it may take. <br/>
-                          <div className='jt-center'>
+                          <p className='jt-center'>
                             <a  href='https://strategize-fe.vercel.app/'>Join Strategize Now!</a>
-                          </div>
+                          </p>
                           
-                        </p>
+                        </div>
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
