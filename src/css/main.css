@@ -249,3 +249,18 @@ height: 100%;
     min-width: 240px;
     min-height: 120px;
 }
+
+.lnk{
+    background-color: azure;
+    color: aqua;
+    text-decoration: none;
+    text-decoration-color: blue;
+    border: solid 3px transparent;
+    border-radius: 5px;
+    padding: 4px;
+    font-size: 24pt;
+}
+
+.lnk:hover{
+    border: solid 3px aqua;
+}

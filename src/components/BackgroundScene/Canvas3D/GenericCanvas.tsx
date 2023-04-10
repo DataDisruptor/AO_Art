@@ -27,6 +27,8 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   const target3_Location = new THREE.Vector3(9, 0.4,20);
   const target3_Rotation = new THREE.Vector3(0, 5, 0);
 
+  let shouldEnableOrbitControls = false;
+
   const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,0))
   const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
 
@@ -92,13 +94,13 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
 
   useFrame((state, delta, frame) => {
 
-    const currentRotation = new THREE.Vector3(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    // const currentRotation = new THREE.Vector3(camera.rotation.x, camera.rotation.y, camera.rotation.z);
     
     const newLocation = lerp(camera.position, targetLocation);
-    const newRotation = lerp(currentRotation, targetRotation);
+    // const newRotation = lerp(currentRotation, targetRotation);
 
     camera.position.set(newLocation.x, newLocation.y, newLocation.z);
-    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z);
+    // camera.rotation.set(newRotation.x, newRotation.y, newRotation.z);
   })
 
   return <perspectiveCamera/>
@@ -194,7 +196,7 @@ export default function GenericCanvas() {
     }
   }, [])
     return(
-      <Canvas hidden={false} style={{ width: '320px', height: '240px', display: 'flex'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
+      <Canvas hidden={false} style={{ width: '70%', height: '40vh', display: 'flex'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
       <Environment 
         files="./HDR_Free_City_Night_Lights_Ref.hdr" 
         background={true}

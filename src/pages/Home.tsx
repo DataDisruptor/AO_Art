@@ -55,7 +55,7 @@ export default function Home() {
       { true && 
       <div className="flex j-center">
         <div className="f-dir-col jt-center">
-          <div className="pb7 mb7" style={{marginTop: '100px', paddingTop: '100px'}}>
+          <div className="pb7 mb7">
             <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>
             <h2 className='font-11 s3 flex f-wrap j-even pt7 pb7'><span>Tech</span> <span>Art</span></h2>
           </div>
@@ -76,33 +76,33 @@ export default function Home() {
                 <div>
                   <div className="b-img-0">
                     <div className="p5">
-                      <p className="font-1 s2 area-text"> 
+                      <p className="font-1 s1 area-text"> 
                         Software engineering is art - a rather technical one, indeed, yet still a form of ingenious art and human expression nevertheless. <br/>
                         Creation lays at the heart of programming, together with the communication of ideas and sharing of experiences, and as such, it is bound to be
                         a creative and interactive medium to enrich our lives, and a tool we can actively utilize to solve real world problems.
                         Therefore, I have found myself immersed in the world of software development - constantly learning, creating and learning again, on the move.
                       </p>
                       <article className="p1 entry-article m5"> {/*flex j-center */}
-                        <h2 className="entry-title font-3 s3">Strategize <span className='teal'>|</span> Web App</h2>
-                        <img src="strategize_logo.png" alt="img" className="hero-img"/>
-                        <div className="font-1 s2 white jt-left p4"> 
+                        <h2 className="entry-title font-3 s2">Strategize <span className='teal'>|</span> Web App</h2>
+                        <a href='https://strategize-fe.vercel.app/'> <img src="strategize_logo.png" alt="img" className="hero-img"/> </a> 
+                        <div className="font-1 s1 white jt-left p4"> 
                           Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
                           As a solution for any individual or team, Strategize was created with the purpose of helping you dive into complex details of any task, while keeping a 
                           birds-eye view over the scope of your entire stretch goals. <br/>
                           By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
                           you are set out to accomplish, no matter how long it may take. <br/>
                           <p className='jt-center'>
-                            <a  href='https://strategize-fe.vercel.app/'>Join Strategize Now!</a>
+                            <a  href='https://strategize-fe.vercel.app/' className='lnk'>Join Strategize Now!</a>
                           </p>
                           
                         </div>
                       </article>
                       <article className="flex j-center f-dir-col entry-article m5 p1">
-                        <h2 className="entry-title font-3 s3">Regime Change <span className='teal'>|</span> Game</h2>
+                        <h2 className="entry-title font-3 s2">Regime Change <span className='teal'>|</span> Game</h2>
                         <div className="flex j-center " >
                           <ReactPlayer url={'./scavangers.mp4'} controls={true} width={'50%'}/>
                         </div>
-                        <p className="font-1 s2 white jt-left p4"> 
+                        <p className="font-1 s1 white jt-left p4"> 
                           We all know that the end of mankind by the machine uprising is getting nearer any day now! 
                           So why not glimpse into the future we'll never get to see? <br/>
                           In early development, Regime Change is a world where authority, rules and power remain - even without any human in sight.
@@ -141,7 +141,7 @@ export default function Home() {
                       <div className='flex j-center'>
                         <GenericCanvas/>
                       </div>
-                      <article className="font-1 s2 area-text p3 m2"> 
+                      <article className="font-1 s1 area-text p3 m2"> 
                         Sitting at the crossroads of computer science, complex math, and visual arts, Computer Graphics is a steep mountain to climb. It is a formidable domain,
                         with countless of sub-domains that stem from it as a result of the multitude of complexities that it involves, from numerous 3D modeling techniques and
                         processes, to texturing, rigging, animation and rendering. <br/>
@@ -152,7 +152,7 @@ export default function Home() {
                       </article>
                       <img src="3d1.png" alt="img" className="hero-img m2"/>
                       <img src="3d2.png" alt="img" className="hero-img m2"/>
-                      <article className="font-1 s2 area-text p3 m2"> 
+                      <article className="font-1 s1 area-text p3 m2"> 
                         Earnestly learning more, with a longstanding awe, I am constantly honing numerous Computer Graphics skills, aiming towards the 3D Generalist 
                         approach. The inter-connectivity of the plethora of sub-domains in CG means I can not and will not commit to pursuing specific mastery and 
                         proficiency in none of these sub domains - since they are all equally fascinating and paramount for any 3D rendering production pipeline.
