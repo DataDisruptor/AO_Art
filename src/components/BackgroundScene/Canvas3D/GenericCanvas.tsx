@@ -4,6 +4,7 @@ import { Stats, OrbitControls, Environment, useGLTF, useBounds, Bounds } from '@
 
 import { Canvas, useFrame, ThreeElements, useThree, useLoader, events, createEvents } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import DMesh from '../Objects/DracoMesh/DMesh'
 
 // document.addEventListener('requestAnimationFrame', (e) => {
 //   console.log('My Event listener Fired!');
@@ -199,6 +200,7 @@ export default function GenericCanvas() {
         background={true}
         blur={0.5}
       />
+      <OrbitControls/>
       <ambientLight/>
       <pointLight position={[10, 10, 10]} />
       <AutoCamera speed={0.3} targetSubScene={''}/>
@@ -206,8 +208,9 @@ export default function GenericCanvas() {
         <boxGeometry args={[45,1,60]} />
         <meshLambertMaterial color={'#111116'}/>
       </mesh> */}
-      <Model3D url='/ao.glb' position={[0,-1.5,-2]} rotation={[0,-7.9,0]} scale={[0.7,0.7,0.7]} animated={true}/>
-      <Model3D url='/loading.glb' position={[0,-1.5,-2]} rotation={[0,-8,0]} scale={[0.4,0.4,0.4]} animated={true}/>
+      {/* <Model3D url='/ao.glb' position={[0,-1.5,-2]} rotation={[0,-7.9,0]} scale={[0.7,0.7,0.7]} animated={true}/>
+      <Model3D url='/loading.glb' position={[0,-1.5,-2]} rotation={[0,-8,0]} scale={[0.4,0.4,0.4]} animated={true}/> */}
+      <DMesh url='/cello_t2.glb' position={[0,-2.2,-2]} rotation={[0,-1.55,0]} scale={[1,1,1]} />
       {/* <Model3D url='/loadrob.glb' position={[-70,-65,-90]} rotation={[0,8,0]} scale={[1,1,1]} animated={true}/> */}
       {/* <Model3D url='/loadrob.glb' position={[-0.75,-0.77,-1]} rotation={[0,8,0]} scale={[0.01,0.01,0.01]} animated={true}/> */}
     </Canvas>

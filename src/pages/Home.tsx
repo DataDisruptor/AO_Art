@@ -47,7 +47,7 @@ export default function Home() {
   return (
     
     <div className="canvas-container">
-      <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/>
+      {/* <Canvas3D targetSubScene={skillView} renderStartCallback={(e) => {assetsLoaded(e)}}/> */}
       {/* {!hasLanded &&
       <div className="j-center flex va-mid">
         {loaded && <button className="land-button" onClick={() => {setHasLanded(true)}}>ENTER</button>}
@@ -138,6 +138,9 @@ export default function Home() {
                 <div>
                   <div className="b-img-1">
                     <div className="p5">
+                      <div className='flex j-center'>
+                        <GenericCanvas/>
+                      </div>
                       <article className="font-1 s2 area-text p3 m2"> 
                         Sitting at the crossroads of computer science, complex math, and visual arts, Computer Graphics is a steep mountain to climb. It is a formidable domain,
                         with countless of sub-domains that stem from it as a result of the multitude of complexities that it involves, from numerous 3D modeling techniques and
@@ -145,9 +148,7 @@ export default function Home() {
                         However, tremendous efforts are often followed by an accommodating reward to match - and that reward is the joy of creating worlds, the creation of 
                         living characters, with inspiring stories and relatable histories. <br/>
                         As such, 3D art is a craft that pushes the limits of imagination for both the ones who put it together, as well as the ones who get to experience it.
-                        <div className='flex j-center'>
-                          {/* <GenericCanvas/> */}
-                        </div>
+                        
                       </article>
                       <img src="3d1.png" alt="img" className="hero-img m2"/>
                       <img src="3d2.png" alt="img" className="hero-img m2"/>
