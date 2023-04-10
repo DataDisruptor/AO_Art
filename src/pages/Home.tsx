@@ -156,7 +156,7 @@ export default function Home() {
                       <img src="3d2.png" alt="img" className="hero-img m2"/>
                       <article className="font-1 s1 area-text p3 m2"> 
                         <div className='flex j-center'>
-                          <img src="ChamferPiano.jpg" alt="img" className="hero-img m2"/>
+                          <img src="cps.jpg" alt="img" className="hero-img m2"/>
                         </div>
                         
                         Earnestly learning more, with a longstanding awe, I am constantly honing numerous Computer Graphics skills, aiming towards the 3D Generalist 
