@@ -34,10 +34,10 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
 
   useEffect(() => {
     switch (targetSubScene) {
-      case '': setTargetLocation(new THREE.Vector3(0,0,0)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
-      case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
-      case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
-      case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
+      // case '': setTargetLocation(new THREE.Vector3(0,0,0)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
+      // case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
+      // case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
+      // case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
     }
   }, [targetSubScene])
   speed /= 100;
@@ -94,13 +94,14 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
 
   useFrame((state, delta, frame) => {
 
-    // const currentRotation = new THREE.Vector3(camera.rotation.x, camera.rotation.y, camera.rotation.z);
     
+    const currentRotation = new THREE.Vector3(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    console.log(currentRotation)
     const newLocation = lerp(camera.position, targetLocation);
-    // const newRotation = lerp(currentRotation, targetRotation);
+    const newRotation = lerp(currentRotation, targetRotation);
 
     camera.position.set(newLocation.x, newLocation.y, newLocation.z);
-    // camera.rotation.set(newRotation.x, newRotation.y, newRotation.z);
+    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z);
   })
 
   return <perspectiveCamera/>
@@ -196,7 +197,7 @@ export default function GenericCanvas() {
     }
   }, [])
     return(
-      <Canvas hidden={false} style={{ width: '70%', height: '40vh', display: 'flex'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
+      <Canvas hidden={false} style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
       <Environment 
         files="./HDR_Free_City_Night_Lights_Ref.hdr" 
         background={true}

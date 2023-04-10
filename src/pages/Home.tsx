@@ -57,7 +57,7 @@ export default function Home() {
         <div className="f-dir-col jt-center">
           <div className="pb7 mb7">
             <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>
-            <h2 className='font-11 s3 flex f-wrap j-even pt7 pb7'><span>Tech</span> <span>Art</span></h2>
+            <h2 className='font-9 s3 flex f-wrap j-even pt7 pb7 black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
           </div>
           
           {/* <p>
@@ -84,7 +84,8 @@ export default function Home() {
                       </p>
                       <article className="p1 entry-article m5"> {/*flex j-center */}
                         <h2 className="entry-title font-3 s2">Strategize <span className='teal'>|</span> Web App</h2>
-                        <a href='https://strategize-fe.vercel.app/'> <img src="strategize_logo.png" alt="img" className="hero-img"/> </a> 
+                        {/* <a href='https://strategize-fe.vercel.app/'>  </a>  */}
+                        <img src="strategize_logo.png" alt="img" className="hero-img"/>
                         <div className="font-1 s1 white jt-left p4"> 
                           Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
                           As a solution for any individual or team, Strategize was created with the purpose of helping you dive into complex details of any task, while keeping a 
@@ -92,7 +93,7 @@ export default function Home() {
                           By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
                           you are set out to accomplish, no matter how long it may take. <br/>
                           <p className='jt-center'>
-                            <a  href='https://strategize-fe.vercel.app/' className='lnk'>Join Strategize Now!</a>
+                            <a  href='https://strategize-fe.vercel.app/' className='lnk'>Strategize</a>
                           </p>
                           
                         </div>
@@ -100,7 +101,7 @@ export default function Home() {
                       <article className="flex j-center f-dir-col entry-article m5 p1">
                         <h2 className="entry-title font-3 s2">Regime Change <span className='teal'>|</span> Game</h2>
                         <div className="flex j-center " >
-                          <ReactPlayer url={'./scavangers.mp4'} controls={true} width={'50%'}/>
+                          <ReactPlayer url={'./scavangers.mp4'} controls={true} width={'80%'}/>
                         </div>
                         <p className="font-1 s1 white jt-left p4"> 
                           We all know that the end of mankind by the machine uprising is getting nearer any day now! 
@@ -138,10 +139,11 @@ export default function Home() {
                 <div>
                   <div className="b-img-1">
                     <div className="p5">
-                      <div className='flex j-center'>
-                        <GenericCanvas/>
-                      </div>
+                      
                       <article className="font-1 s1 area-text p3 m2"> 
+                        <div className='flex j-center'>
+                          <GenericCanvas/>
+                        </div>
                         Sitting at the crossroads of computer science, complex math, and visual arts, Computer Graphics is a steep mountain to climb. It is a formidable domain,
                         with countless of sub-domains that stem from it as a result of the multitude of complexities that it involves, from numerous 3D modeling techniques and
                         processes, to texturing, rigging, animation and rendering. <br/>
@@ -153,6 +155,10 @@ export default function Home() {
                       <img src="3d1.png" alt="img" className="hero-img m2"/>
                       <img src="3d2.png" alt="img" className="hero-img m2"/>
                       <article className="font-1 s1 area-text p3 m2"> 
+                        <div className='flex j-center'>
+                          <img src="ChamferPiano.jpg" alt="img" className="hero-img m2"/>
+                        </div>
+                        
                         Earnestly learning more, with a longstanding awe, I am constantly honing numerous Computer Graphics skills, aiming towards the 3D Generalist 
                         approach. The inter-connectivity of the plethora of sub-domains in CG means I can not and will not commit to pursuing specific mastery and 
                         proficiency in none of these sub domains - since they are all equally fascinating and paramount for any 3D rendering production pipeline.
@@ -230,7 +236,7 @@ export default function Home() {
                     <iframe className='vid-frame' src="https://www.youtube.com/embed/nHH1Z4GoHTU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     <iframe className='vid-frame' src="https://www.youtube.com/embed/SGz4aLi0vOQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
-                      <span>Ableton</span> | <span>Cubase</span> | <span>Music Production</span> | <span>Mixing</span> | <span>Mastering</span> | <span>Guitar</span> | <span>Violin</span> | <span>Cello</span> | <span>Piano</span> | <span>French Horn</span> 
+                      <span>Music Production</span> | <span>Sound Design</span> | <span>Ableton</span> | <span>Cubase</span> | <span>Mixing</span> | <span>Mastering</span> | <span>Guitar</span> | <span>Violin</span> | <span>Cello</span> | <span>Piano</span> | <span>French Horn</span> 
                     </p>
                   </div>
                   <section className="p3 m3">
