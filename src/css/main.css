@@ -162,6 +162,9 @@ body {
         height: 94px;
         width: 94px;
     }
+    .main-title{
+        font-size: 60pt;
+    }
 }
 
 @media (max-width: 700px) {
@@ -222,13 +225,14 @@ height: 100%;
     /* width:min-content; */
 }
 .music-player-button{
-    /* padding: 3px; */
+    padding: 3px 3px;
     border-radius: 10px;
     border: solid 3px transparent;
-    /* margin: 2px; */
+    margin: 2px;
     /* color: rgb(38, 42, 42); */
     vertical-align: middle;
     align-items: center;
+    align-self: center;
     background-color: rgb(255, 255, 255);
 }
 .music-player-button:hover{
@@ -239,8 +243,9 @@ height: 100%;
     margin: 20px;
 }
 .vid-frame{
-    height: 20vh;
+    height: 20vw;
     width: 30vw;
     padding: 25px;
     min-width: 240px;
+    min-height: 120px;
 }

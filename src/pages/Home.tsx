@@ -208,7 +208,15 @@ export default function Home() {
                           
                         </div>
                         <div className='j-center flex '>
-                          <ReactPlayer ref={musicPlayer} height={'40px'} width={'45vw'} url={song} controls={true} style={{minHeight: '50px'}}/> 
+                          <ReactPlayer 
+                            ref={musicPlayer}
+                            height={'40px'} 
+                            width={'45vw'}
+                            url={song} 
+                            playIcon={<Icon icon='icon-park:play' className="m2 skill-icon"/>} 
+                            controls={true} 
+                            style={{minHeight: '150px', minWidth: '30vw'}} 
+                          /> 
                         </div>
                       </section>
                     </div>
