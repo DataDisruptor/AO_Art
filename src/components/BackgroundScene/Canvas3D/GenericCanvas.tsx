@@ -193,19 +193,21 @@ export default function GenericCanvas() {
   useEffect(()=> {
     return () => {
       // tjs.gl.forceContextLoss();
-      
     }
   }, [])
     return(
-      <Canvas hidden={false} style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}}>{/* style={{ width: '100%', height: '95vh', display: 'grid', placeItems: 'center' }} */}
+    <Canvas hidden={false} style={{background: 'black', width: '100%', height: '25%', position: 'absolute', zIndex: -1, display: 'flex'}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
       <Environment 
-        files="./HDR_Free_City_Night_Lights_Ref.hdr" 
+        files="./moonless_golf_1k_2.hdr" 
         background={true}
-        blur={0.5}
+        blur={1.15}
+        
       />
-      <OrbitControls/>
-      <ambientLight/>
-      <pointLight position={[10, 10, 10]} />
+      
+      <OrbitControls />
+      <ambientLight intensity={3}/>
+      <pointLight position={[100, 20, -50]} intensity={2} />
+      <pointLight position={[0, 30, 30]} intensity={1} />
       {/* <AutoCamera speed={0.3} targetSubScene={''}/> */}
       {/* <mesh position={[0,-1,0]}>
         <boxGeometry args={[45,1,60]} />

@@ -39,10 +39,10 @@ function Box(props: ThreeElements['mesh']) {
 }
 
 function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: string}){
-  // speed /= 100;
+  speed /= 100;
 
   const initZLocation = 150;
-  const target1_Location = new THREE.Vector3(-21, 6.2, 20);
+  const target1_Location = new THREE.Vector3(-21, 0, 20);
   const target1_Rotation = new THREE.Vector3(0, -5, 0);
 
   const target2_Location = new THREE.Vector3(0, 10.4, -11);
@@ -55,8 +55,8 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   // const target3_Rotation = new THREE.Vector3(-1.2, 4.6, 0);
 
 
-  // const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,initZLocation))
-  // const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
+  const [targetLocation, setTargetLocation] = useState(new THREE.Vector3(0,0,initZLocation))
+  const [targetRotation, setTargetRotation] = useState(new THREE.Vector3(0,0,0))
   const [initialized, setInitialized] = useState(false);
 
   const {camera} = useThree();
@@ -76,14 +76,14 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
 
 
 
-  // useEffect(() => {
-  //   switch (targetSubScene) {
-  //     case '': setTargetLocation(new THREE.Vector3(0,-200,initZLocation)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
-  //     case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
-  //     case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
-  //     case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
-  //   }
-  // }, [targetSubScene])
+  useEffect(() => {
+    switch (targetSubScene) {
+      case '': setTargetLocation(new THREE.Vector3(0,-200,initZLocation)); setTargetRotation(new THREE.Vector3(0,0,0)); break;
+      case 'programming': setTargetLocation(target1_Location); setTargetRotation(target1_Rotation); break;
+      case '3d': setTargetLocation(target2_Location); setTargetRotation(target2_Rotation); break;
+      case 'music': setTargetLocation(target3_Location); setTargetRotation(target3_Rotation); break;
+    }
+  }, [targetSubScene])
   
 
   
@@ -132,15 +132,15 @@ function AutoCamera({speed, targetSubScene} : {speed : number, targetSubScene: s
   }
   const eulerOrder :THREE.EulerOrder = 'XYZ'
   useFrame((state, delta, frame) => {
-    // console.log(state, delta, frame)
-    // const currentRotation = new THREE.Euler(camera.rotation.x, camera.rotation.y, camera.rotation.z);
-    // const newRot = new THREE.Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
+    console.log(state, delta, frame)
+    const currentRotation = new THREE.Euler(camera.rotation.x, camera.rotation.y, camera.rotation.z);
+    const newRot = new THREE.Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
     
-    // const newLocation = lerp(camera.position, targetLocation, delta);
-    // const newRotation = lerp(newRot, targetRotation, delta);
+    const newLocation = lerp(camera.position, targetLocation, delta);
+    const newRotation = lerp(newRot, targetRotation, delta);
 
-    // camera.position.set(newLocation.x, newLocation.y, newLocation.z);
-    // camera.rotation.set(newRotation.x, newRotation.y, newRotation.z, eulerOrder);
+    camera.position.set(newLocation.x, newLocation.y, newLocation.z);
+    camera.rotation.set(newRotation.x, newRotation.y, newRotation.z, eulerOrder);
   })
 
   return <perspectiveCamera/>
@@ -212,6 +212,7 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
   const canvasRef : any = useRef();
   const [loaded, setLoaded] = useState(false);
 
+  // Custom Loading Management-----Override DefaultLoadingManager---------------------------------------------------------------------------------------
   const loadManager : THREE.LoadingManager = THREE.DefaultLoadingManager;
   loadManager.onLoad = () => {
     setLoaded(true);
@@ -220,14 +221,14 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
   loadManager.onProgress = ((url : any)=> {
     // console.log('Currently loading........', url)
   })
-  // loadManager.setURLModifier((url) => { 
-  //   console.log('setURLModifier', url)
-  //   return url;
-  // });
-    
-  // useEffect(()=> {
-  //   console.log('loadManager', loadManager)
-  // }, [loadManager])
+  loadManager.setURLModifier((url) => { 
+    console.log('setURLModifier', url)
+    return url;
+  });
+  // Custom Loading Management-----Override DefaultLoadingManager---------------------------------------------------------------------------------------  
+  useEffect(()=> {
+    console.log('loadManager', loadManager)
+  }, [loadManager])
 
   return (
     <>
@@ -243,11 +244,9 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
       <AutoCamera speed={5} targetSubScene={targetSubScene}/>
       {/* <Model3D url='/floor.glb' position={[0,-1.87, 0]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
       {/*3d Assets */}
-      {/* <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} /> */}
-      {/* <DMesh url='/cello_t2.glb' position={[0,-0.53,-15]} rotation={[0,-1.55,0]} scale={[1,1,1]} /> */}
-      
-      {/* <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
-      
+      <DMesh url='/3dCode_t.glb' position={[-20,-0.5,20]} rotation={[0,0,0]} scale={[1,1,1]} />
+      <DMesh url='/robot_t.glb' position={[0,-0.53,-15]} rotation={[0,-1.55,0]} scale={[1,1,1]} />
+      <DMesh url='/cello_t.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/>
       {/* <Model3D url='/cello.glb' position={[50,-0.45,-75]} rotation={[0,-1.55,0]} scale={[1,1,1]}/> */}
       {/* <axesHelper/> */}
       {/* <Cello_t props={{}}/> */}

@@ -1,0 +1,19 @@
+
+/* ----------------------------------------------------------- */
+
+
+.scroll-container {
+    width: 80vw;
+    /* display: flex; */
+    gap: 20px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+  }
+  
+  .scroll-item {
+    display: inline-block;
+    width: 25vw;
+    background-color: rgb(0, 0, 0);
+    margin-right: 10px;
+  }
