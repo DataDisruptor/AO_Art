@@ -1,0 +1,115 @@
+
+
+/* -------------------------------------------------------------- */
+.nav-button{
+    width: 25vw;
+    /* border-radius: 2px; */
+    border-color: aqua;
+    color: aqua;
+    background-color: rgb(234, 229, 229);
+    padding: 2%;
+    position: relative;
+}
+
+.btn-normal{
+    background-color: rgb(12, 3, 3);
+}
+
+.btn-selcted{
+    background-color: rgb(255, 255, 255);
+}
+
+/* -------------------------------------------------------------- */
+.btn-left{
+    border-top-left-radius: 10px;
+    background-color: rgb(12, 3, 3);
+    box-shadow: 0px 0px 10px rgba(0, 254, 246, 0.2);
+    transition: all 0.1s ease-in-out;
+}
+.btn-left:hover{
+    box-shadow: 0px 0px 50px rgba(0, 254, 246, 0.4);
+}
+
+.btn-left::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url('../../public/code.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    opacity: 0;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-left:hover::before{
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+
+/* -------------------------------------------------------------- */
+.btn-middle{
+    background-color: rgb(12, 3, 3);
+    box-shadow: 0px 0px 10px rgba(0, 254, 246, 0.2);
+    transition: all 0.1s ease-in-out;
+}
+.btn-middle:hover{
+    box-shadow: 0px 0px 50px rgba(0, 254, 246, 0.4);
+}
+
+.btn-middle::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url('../../public/chamferPiano.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    opacity: 0;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-middle:hover::before{
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+/* -------------------------------------------------------------- */
+.btn-right{
+    border-top-right-radius: 10px;
+    background-color: rgb(12, 3, 3);
+    box-shadow: 0px 0px 10px rgba(0, 254, 246, 0.2);
+    transition: all 0.1s ease-in-out;
+}
+.btn-right:hover{
+    box-shadow: 0px 0px 50px rgba(0, 254, 246, 0.4);
+}
+
+.btn-right::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url('../../public/CelloRender.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 10px;
+    opacity: 0;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-right:hover::before{
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+/* -------------------------------------------------------------- */

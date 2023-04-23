@@ -196,12 +196,13 @@ export default function GenericCanvas() {
     }
   }, [])
     return(
-    <Canvas hidden={false} style={{background: 'black', width: '100%', height: '25%', position: 'absolute', zIndex: -1, display: 'flex'}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
+    <Canvas hidden={false} style={{background: 'black', width: '100%', height: '100%', position: 'absolute', zIndex: -1, display: 'flex', top: 0, left: 0}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
       <Environment 
-        files="./moonless_golf_1k_2.hdr" 
+        files="./moonless_golf_1k_2_reverse.hdr" 
         background={true}
         blur={1.15}
-        
+        near={0}
+        far={0}
       />
       
       <OrbitControls />
@@ -215,8 +216,8 @@ export default function GenericCanvas() {
       </mesh> */}
       {/* <Model3D url='/ao.glb' position={[0,-1.5,-2]} rotation={[0,-7.9,0]} scale={[0.7,0.7,0.7]} animated={true}/>
       <Model3D url='/loading.glb' position={[0,-1.5,-2]} rotation={[0,-8,0]} scale={[0.4,0.4,0.4]} animated={true}/> */}
-      <DMesh url='/floor_test.glb' position={[0,-2.78,1]} rotation={[0,0,0]} scale={[0.01,0.01,0.01]} />
-      <DMesh url='/robot_t.glb' position={[0,-2.8,1]} rotation={[0,0,0]} scale={[0.5,0.5,0.5]} />
+      {/* <DMesh url='/floor_test.glb' position={[0,-2.78,1]} rotation={[0,0,0]} scale={[0.01,0.01,0.01]} /> */}
+      <DMesh url='/robot_t.glb' position={[0,-4,2.5]} rotation={[0,0,0]} scale={[0.5,0.5,0.5]} />
       {/* <Model3D url='/loadrob.glb' position={[-70,-65,-90]} rotation={[0,8,0]} scale={[1,1,1]} animated={true}/> */}
       {/* <Model3D url='/loadrob.glb' position={[-0.75,-0.77,-1]} rotation={[0,8,0]} scale={[0.01,0.01,0.01]} animated={true}/> */}
     </Canvas>

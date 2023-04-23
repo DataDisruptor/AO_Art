@@ -281,3 +281,9 @@ resource "null_resource" "kube_expose" {
 }
 
 #############################################################################################################################################
+
+resource "null_resource" "set_working_project" {
+  provisioner "local-exec" {
+    command = "gcloud config set project ${var.project_id}"
+  }
+}

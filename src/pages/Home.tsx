@@ -7,46 +7,36 @@ import { Canvas } from "@react-three/fiber";
 import GenericCanvas from '../components/BackgroundScene/Canvas3D/GenericCanvas';
 import ArchCanvas from '../components/BackgroundScene/Canvas3D/ArchCanvas';
 import X_Scroller from '../components/primitives/scrollers/sideScroller/X_Scroller';
+import MusicPlayer from '../components/primitives/musicPlayer/MusicPlayer';
 
 
 
 export default function Home() {
-  //TODO : Three.js scene as the background - scene is composed of the 3 elements - with every press of the button the camera lerps from one view to another
-  /*
-  Scene Ideas:
-    *T:
-      - computers, wires, cables, code floating
-    *G:
-      - Robot, ChargePod, Pillars, 
-  */
   
   const [skillView, setSkillView] = useState('')
-  const [hasLanded, setHasLanded] = useState(false)
   const [loaded, setLoaded] = useState(false);
 
-  const [playlistItem, setPlaylistItem] = useState(0);
-  const [song, setSong] = useState('./intro.mp3');
-  const [songName, setSongName] = useState('Simpler Times');
-  const musicPlayer = useRef(new ReactPlayer({}));
-  const onPlaylistUpdate = (direction : number)=>{
-    if (playlistItem + direction > 1 || playlistItem + direction < 0 ){
+  const [projectView, setProjectView] = useState({
+    name: '',
+    description: '',
+    visible: false
+  })
+
+  const onProjectViewChange = (name: string, description: string, visible: boolean) => {
+    if(!visible){
+      setProjectView({name : '', description : '', visible: false})
       return;
     }
-    setPlaylistItem(prev=> prev + direction);
-    
-  }
-  useEffect(()=>{
-    switch (playlistItem) {
-      case 0: setSong('./intro.mp3'); setSongName('Simpler Times'); break;
-      case 1: setSong('./second.mp3'); setSongName('Faint Lights'); break;
+    switch (name){
+      case 'strategize': setProjectView({name, description, visible}); break;
+      case 'regime-change': setProjectView({name, description, visible}); break;
     }
-    console.log(musicPlayer)
-    
-  }, [playlistItem, musicPlayer])
-  
-  const assetsLoaded = (e : any) => {
-    setLoaded(true)
-    console.log('AtHome: ASSETS LOADED', e);
+  }
+
+  const updateProjectViewState = (e: any) => {
+    if(e.target.nodeName === 'DIV'){
+      setProjectView({name : '', description : '', visible: false})
+    }
   }
 
   const [canvasOverlay, setCanvasOverlay] = useState({
@@ -88,16 +78,16 @@ export default function Home() {
               <h2 className='font-9 s3 flex f-wrap j-even pt7 pb7 black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
 
               <div className='flex f-dir-row j-center'>
-                <Icon icon='material-symbols:attach-email-outline' className="m2 skill-icon"/>
-                <Icon icon='jam:github-square' className="m2 skill-icon"/>
-                <Icon icon='ant-design:linkedin-outlined' className="m2 skill-icon"/>
-                <Icon icon='academicons:cv-square' className="m2 skill-icon"/>
+                <Icon icon='material-symbols:attach-email-outline' className="m2 skill-icon link-icon"/>
+                <Icon icon='jam:github-square' className="m2 skill-icon link-icon"/>
+                <Icon icon='ant-design:linkedin-outlined' className="m2 skill-icon link-icon"/>
+                <Icon icon='academicons:cv-square' className="m2 skill-icon link-icon"/>
               </div>
 
             </div>
             
             {true && <section className="">
-              <button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming</button>  
+              <button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming </button>  
               <button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button>  
               <button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button>
               <section className='flex j-center'>
@@ -117,6 +107,16 @@ export default function Home() {
                 {true && 
                   <div className='swa'>
                     <div className="b-img-0 ">
+                      <div className={`project-details ${!projectView.visible ? 'details-off' : ''}`} onClick={(e)=>{updateProjectViewState(e)}}>
+                        {projectView.visible && 
+                          <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
+                            <h2 className='white font-1 s3'>{projectView.name}</h2> 
+                            <p className='white font-1 s2'>
+                              {projectView.description}
+                            </p>
+                            
+                          </article>}
+                      </div>
                       <div className="p5 ">
                         <p className="font-1 s2 area-text"> 
                           Software engineering is art - a rather technical one, indeed, yet still a form of ingenious art and human expression nevertheless. <br/>
@@ -131,6 +131,10 @@ export default function Home() {
                             <div className="flex j-center mt6" >
                               <img src="strategize_logo.png" alt="img" className="hero-img"/>
                             </div> */}
+                            <p>
+                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('strategize', 'stuff..1', true)}/>
+                              <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
+                            </p>
                             {/* <a href='https://strategize-fe.vercel.app/'>  </a>  */}
                             <div className="font-1 s1 white jt-left p4"> 
                               {/* Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
@@ -144,7 +148,11 @@ export default function Home() {
                               
                             </div>
                           </article>
-                          <article className="entry-article article-regime-change m5">
+                          <article className="p1 entry-article article-regime-change m5">
+                            <p>
+                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('regime-change', 'stuff..2', true)}/>
+                              <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
+                            </p>
                             {/* <h2 className="entry-title font-3 s2">Regime Change <span className='teal'>|</span> Game</h2>
                             <div className="flex j-center p1" >
                               <ReactPlayer url={'./scavangers.mp4'} controls={true}  width={'80%'}/>
@@ -193,9 +201,9 @@ export default function Home() {
                 {true && 
                   <div className='b-img-1 '>
                     
-                    <div className="">
+                    <div style={{position:'relative'}}>
                       <GenericCanvas/>
-                      
+
                         <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 
                         className={`arch-canvas-overlay ${!canvasOverlay.active ? 'stream-off':''}`}>
                         {canvasOverlay.active && <ArchCanvas hidden={!canvasOverlay.active} building={canvasOverlay.canvasId}/>}
@@ -214,9 +222,23 @@ export default function Home() {
                           As such, 3D art is a craft that pushes the limits of imagination for both the ones who put it together, as well as the ones who get to experience it.
                           
                         </article>
+                        {/* <img onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}}  src="3d2.png" alt="img" className="hero-img m2"/>
+                        <img onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} src="3d1.png" alt="img" className="hero-img m2"/> */}
+                        <section className='flex f-dir-row j-center'>
+                          <div onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} className='m5 portal-3d portal-1'>
+                            <p className='font-2 s3 white'>
+                              TAKE A TOUR
+                            </p>
+                          </div>
+
+                          <div onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}} className='m5 portal-3d portal-2'>
+                            <p className='font-2 s3 white'>
+                              TAKE A TOUR
+                            </p>
+                          </div>
+                        </section>
                         
-                        <img onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} src="3d1.png" alt="img" className="hero-img m2"/>
-                        <img onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}}  src="3d2.png" alt="img" className="hero-img m2"/>
+                        
                         <article className="font-1 s2 area-text p3 m2"> 
                           {/* <div className='flex j-center'>
                             <img src="cps.jpg" alt="img" className="hero-img m2"/>
@@ -317,7 +339,8 @@ export default function Home() {
                         <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/>
                         {/* <h2 className="entry-title font-3 s3 m6">Original Music</h2> */}
                       </div>
-                      <div className='p5 j-center flex'>
+                      <MusicPlayer/>
+                      {/* <div className='p5 j-center flex'>
                         <section className='music-player p3'>
                           <div className='j-even flex f-dir-row p4'>
                             <div className='flex f-dir-row f-basis-5'>
@@ -335,7 +358,7 @@ export default function Home() {
                             
                           </div>
                           <div className='j-center flex '>
-                            <audio 
+                            <audio ref={musicPlayer}
                               // ref={musicPlayer}
                               // height={'40px'} 
                               // width={'45vw'}
@@ -346,8 +369,9 @@ export default function Home() {
                               style={{minHeight: '150px', minWidth: '30vw'}} 
                             /> 
                           </div>
+                          
                         </section>
-                      </div>
+                      </div> */}
                       {/*width="560" height="315" */}
                       <div className='flex j-center jt-center'>
                         <img style={{minWidth: '300px', width: '30vw'}} src='/Tributes.png' alt='music'/>

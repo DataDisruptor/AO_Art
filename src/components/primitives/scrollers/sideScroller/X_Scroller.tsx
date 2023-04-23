@@ -23,14 +23,8 @@ import { useEffect, useRef, useState } from "react";
 export default function X_Scroller() {
 
     const images : string [] = [
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
-        'ue1.png', 'ue2.png', 'ue1.png', 'ue2.png', 
+        'e1.png', 'e2.png',
+        'e3.png', 'e4.png', 'e5.png', 
     ]
 
     const scrollerRef : any = useRef(null);
@@ -84,10 +78,10 @@ export default function X_Scroller() {
             <img key={index} src={img} alt={`Image ${index}`} width={window.innerWidth*0.25} style={{maxWidth: window.innerWidth/4, padding: window.innerWidth*0.005}} />
         ))}
         </div>
-        <div >
+        {/* <div >
             <button onClick={(e) => handleScroll(-scrollAmount, e)}>&lt;</button>
             <button onClick={(e) => handleScroll(scrollAmount, e)}>&gt;</button>
-        </div>
+        </div> */}
     </div>
     
   );
