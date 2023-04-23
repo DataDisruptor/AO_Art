@@ -7,6 +7,10 @@
 @import './music-player.css';
 @import './overlays.css';
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     /* background-color: rgba(14, 13, 13, 0); */
     color: rgb(246, 246, 241);
@@ -19,6 +23,17 @@ body {
     background-size: cover;
     background-position: center center; */
 }
+
+a:link { text-decoration: none; color: white }
+
+
+a:visited { text-decoration: none; color: white }
+
+
+a:hover { text-decoration: none; color: aqua }
+
+
+a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
 .nav{
     background-color: black;
@@ -40,6 +55,11 @@ body {
 .navigation li{
     margin: 25px;
     align-self: center;
+}
+
+.nav-link{
+    text-decoration: none;
+    text-decoration-line: none ;
 }
 
 .logo-img{
@@ -313,11 +333,34 @@ body {
 .link-icon{
     color: aliceblue;
     margin: 1%;
+    width: 64px;
+    height: 64px;
 }
 .link-icon:hover{
     color: aqua;
     cursor:pointer;
 }
+
+.down-arrow{
+    color: aliceblue;
+    margin: 1%;
+    width: 64px;
+    height: 64px;
+    animation: arrow-anim 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-anim {
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(15px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
 
 @media (min-width: 1801px) {
     .skill-icon{

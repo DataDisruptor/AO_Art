@@ -8,10 +8,25 @@ import GenericCanvas from '../components/BackgroundScene/Canvas3D/GenericCanvas'
 import ArchCanvas from '../components/BackgroundScene/Canvas3D/ArchCanvas';
 import X_Scroller from '../components/primitives/scrollers/sideScroller/X_Scroller';
 import MusicPlayer from '../components/primitives/musicPlayer/MusicPlayer';
+import { Link } from 'react-router-dom';
 
 
 
 export default function Home() {
+
+  //3d-----------------------------------
+
+  const [imageView, setImageView] = useState({
+    id: -1,
+    active: false,
+    src: ''
+  })
+
+  const onImageViewChange = (id : any, active : boolean, src : string) => {
+    setImageView({id, active, src});
+  }
+
+  //3d-----------------------------------
   
   const [skillView, setSkillView] = useState('')
   const [loaded, setLoaded] = useState(false);
@@ -72,41 +87,49 @@ export default function Home() {
         { true && 
         <div className="flex j-center">
           <div className="f-dir-col jt-center">
-            <div className="pb7 mb7">
+            <div className="p5" style={{height:'99vh', marginTop: '15vh'}} id='home'>
 
               <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>        
-              <h2 className='font-9 s3 flex f-wrap j-even pt7 pb7 black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
+              <h2 className='font-9 s3 flex f-wrap j-even  black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
 
-              <div className='flex f-dir-row j-center'>
-                <Icon icon='material-symbols:attach-email-outline' className="m2 skill-icon link-icon"/>
-                <Icon icon='jam:github-square' className="m2 skill-icon link-icon"/>
-                <Icon icon='ant-design:linkedin-outlined' className="m2 skill-icon link-icon"/>
-                <Icon icon='academicons:cv-square' className="m2 skill-icon link-icon"/>
+              <div className='flex f-dir-row j-center mt7 mb7 p5'>
+                <Icon icon='material-symbols:attach-email-outline' className="m3 link-icon"/>
+                <Icon icon='jam:github-square' className="m3 link-icon"/>
+                <Icon icon='ant-design:linkedin-outlined' className="m3 link-icon"/>
+                <Icon icon='academicons:cv-square' className="m3 link-icon"/>
               </div>
-
+              <a href={'#about'}>
+                <Icon icon='material-symbols:keyboard-arrow-down-rounded' className="m3 down-arrow"/>
+              </a>
             </div>
             
-            {true && <section className="">
-              <button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming </button>  
-              <button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button>  
-              <button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button>
-              <section className='flex j-center'>
-                <article className='about black'>
-                  <img className='m5' src='/about-me.png' alt='about' width={'300px'}/>
-                  <p>
-                    Hi, I am Addam
-                  </p>
-                </article>
-                
-              </section>
-              <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}}>
+            {true && <section  id='about' style={{height:'99vh', paddingTop: '20%'}}>
+              <div style={{height:'99vh'}} >
+                <a href='#programming'><button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming</button></a>
+                <a href='#3d'><button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button></a>  
+                <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
+                <section className='flex j-center'>
+                  <article className='about black'>
+                    <img className='m5' src='/about-me.png' alt='about' width={'300px'}/>
+                    <p>
+                      Hi, I am Addam
+                    </p>
+                  </article>
+                  
+                </section>
+              </div>
+
+              
+              <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='programming'>
                 <img className='skill-img' src='/skill_programming.png' alt='programming'/>
               </div>
               <article className="nav-area black">
                 {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
                 {true && 
-                  <div className='swa'>
-                    <div className="b-img-0 ">
+                <>
+                  
+                  <div className='swa' >
+                    <div className="b-img-0 " >
                       <div className={`project-details ${!projectView.visible ? 'details-off' : ''}`} onClick={(e)=>{updateProjectViewState(e)}}>
                         {projectView.visible && 
                           <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
@@ -193,21 +216,32 @@ export default function Home() {
                       </div>
                     </section> 
                   </div> 
+                </>
                 }
                 {/*3D----------------------------------------------------------------------3D-----------------------------------------------------------3D */}
-                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}}>
+                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='3d'>
                   <img className='skill-img' src='/skill_3d.png' alt='3d art'/>
                 </div>
                 {true && 
-                  <div className='b-img-1 '>
-                    
+                <section >
+                  <div className='b-img-1 '>  
                     <div style={{position:'relative'}}>
                       <GenericCanvas/>
 
-                        <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 
-                        className={`arch-canvas-overlay ${!canvasOverlay.active ? 'stream-off':''}`}>
+                      <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 
+                        className={`arch-canvas-overlay ${!canvasOverlay.active ? 'stream-off':''}`}
+                      >
                         {canvasOverlay.active && <ArchCanvas hidden={!canvasOverlay.active} building={canvasOverlay.canvasId}/>}
-                        </div>
+                      </div>
+
+                      <div className={`project-details ${!imageView.active ? 'details-off' : ''}`} onClick={(e)=>{setImageView({id: -1, active: false, src: ''})}}>
+                        {imageView.active && 
+                          <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
+                            <img src={imageView.src} alt='s'  style={{maxHeight: '100%', display:'flex'}}/>
+                            
+                          </article>}
+
+                    </div>
                       
                       <div className="p5 b-img-1" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
                         <article className="font-1 s2 area-text p3 m2"> 
@@ -237,13 +271,8 @@ export default function Home() {
                             </p>
                           </div>
                         </section>
-                        
-                        
-                        <article className="font-1 s2 area-text p3 m2"> 
-                          {/* <div className='flex j-center'>
-                            <img src="cps.jpg" alt="img" className="hero-img m2"/>
-                          </div> */}
-                          
+             
+                        <article className="font-1 s2 area-text p3 m2">                        
                           Earnestly learning more, with a longstanding awe, I am constantly honing numerous Computer Graphics skills, aiming towards the 3D Generalist 
                           approach. The inter-connectivity of the plethora of sub-domains in CG means I can not and will not commit to pursuing specific mastery and 
                           proficiency in none of these sub domains - since they are all equally fascinating and paramount for any 3D rendering production pipeline.
@@ -251,61 +280,7 @@ export default function Home() {
                             {/* <GenericCanvas/> */}
                           </div>
                         </article>
-                        
-                        {/* <div>
-                          <img style={{left:'-220', position: 'relative'}} src="ue1.png" alt="img" className="hero-img left m2"/>
-                          <img style={{right:'220', position: 'relative'}} src="ue2.png" alt="img" className="hero-img m2"/>
-                        </div> */}
-                        {/* <div className="image-scroll-container">
-                          <div className="scroll-buttons">
-                            <button className="scroll-left-button">&lt;</button>
-                            <button className="scroll-right-button">&gt;</button>
-                          </div>
-                          <div className="image-scroll-wrapper">
-                            <img src="ue1.png" alt="img" />
-                            <img src="ue2.png" alt="img"/>
-                            <img src="ue1.png" alt="img" />
-                            <img src="ue2.png" alt="img"/>
-                            <img src="ue1.png" alt="img" />
-                            <img src="ue2.png" alt="img"/>
-                          </div>
-                      </div> */}
-                      {/* <div className='flex j-center'>
-                      <div className="scroll-buttons">
-                            <button className="scroll-left-button">&lt;</button>
-                            <button className="scroll-right-button">&gt;</button>
-                          </div>
-                        <div className='scroll-container'>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                          <img  src="ue1.png" alt="img" className='scroll-item'/>
-                      
-                        </div>
-                      </div> */}
-                      
-                        <X_Scroller/>
+                        <X_Scroller onImageViewChange={onImageViewChange}/>
                         {/* <a href="/#"> Portfolio </a> */}
                       </div>
                       <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
@@ -322,14 +297,16 @@ export default function Home() {
                       </div>  
                     </section>
                   </div>
+                </section>
+                  
                 }
                 {/*Music----------------------------------------------------------------------Music-----------------------------------------------------------Music */}
-                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}}>
+                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='music'>
                   <img className='skill-img' src='/skill_music.png' alt='music'/>
                 </div>
                 {true && 
                   <div >
-                    <div className="b-img-2">
+                    <div className="b-img-2" >
                       <div className="p5">
                         <p className="font-1 s2 area-text"> 
                           
@@ -401,7 +378,7 @@ export default function Home() {
             </section> }
           </div>
         </div>}
-        <div className='p5 mt7 mb7 swa' style={{border: '5px dashed grey'}}>
+        <div className='p5 mt7 mb7 swa' style={{border: '5px dashed grey'}} id='contact'>
           <h2 className='black font-7 s3'>CONTACT</h2>
           <p className='black font-1 s2'>
             If you want to contact me then please do not hesitate to reach out about anything.

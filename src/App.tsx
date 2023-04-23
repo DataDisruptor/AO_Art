@@ -13,9 +13,11 @@ function App() {
       <div className='nav'>
         <img className='logo-img' src='/aologo.png' height='40px' width='45px' alt='logo'/>
         <ul className='navigation'>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
+          <li><a href='#home' className='nav-link font-1'>Home</a></li>
+          <li><a href='#about' className='nav-link font-1'>About</a></li>
+          <li><a href='#programming' className='nav-link font-1'>Programming</a></li>
+          <li><a href='#3d' className='nav-link font-1'>3D Art</a></li>
+          <li><a href='#music' className='nav-link font-1'>Music</a></li>
         </ul>
       </div>
       <BrowserRouter>
