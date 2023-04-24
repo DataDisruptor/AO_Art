@@ -133,9 +133,28 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                   <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
                   <div className='flex j-center'>
                     <article className='about black'>
-                      <img className='m5' src='/about-me.png' alt='about' width={'300px'}/>
-                      <p>
-                        Hi, I am Addam
+                      <img className='m5' src='/about-me.png' alt='about' width={'50%'}/>
+                      <p className='p3 font-1 s2'>
+                        Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation. <br/>
+                        As a little kid, I remember myself forcing my parents to write down stories I came up with before learning how to read and write, and
+                        even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. {'(Sorry mom!)'} 
+                      </p>
+                      <p className='p3 font-1 s2'>
+                        Growing up over the years, I had discovered music as a powerful medium through which my urge for creation and conveying stories could be expressed.
+                        I had studied various instruments in dedication, formed bands and toured at live concerts, studied modern musical production tools and techniques,
+                        and had the pleasure of composing music for live theatre and contemporary dance routines, as well as the opportunity to pass on my knowledge to
+                        some extremely passionate and talented young students.
+                      </p>
+                      <p className='p3 font-1 s2'>
+                        As a detail-oriented individual with strong affinity for technical challenges and critical thinking, I had found myself falling in love with the
+                        world of software engineering, completely immersed, horrified and amazed by the infinity of possibilities that could be unleashed with programming 
+                        as a tool at my disposal. My passion for creation has forced me into another endless pursuit, where my new journey began with Game Development in
+                        C++ and Unreal Engine, as well as some extensive detours into the realm of Computer Graphics, learning 3D modeling and rendering tools. <br/>
+                        As time passed, my interest and curiosity had expanded into numerous development domains, and have successfully completed the Fullstack 
+                        web development program at <a>Masterschool</a>, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
+                        invaluable programming experience, further pushing the boundaries of my imagination and creativity, demystifying one bug at a time, persistently and 
+                        steadily, expanding and revealing new horizons within the world of software engineering.
+
                       </p>
                     </article>
                     

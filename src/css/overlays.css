@@ -64,15 +64,18 @@
 
 .overlay-nav-btn{
     color:antiquewhite;
+    border: 2px solid transparent;
     background-color: rgb(59, 58, 58);
     border-radius: 50%;
     transition: all 0.2s ease-in-out;
 }
 .overlay-nav-btn:hover{
     color:aqua;
+    border: 2px solid white;
     background-color: rgb(46, 43, 43);
-    border-radius: 25%;
+    /* border-radius: 25%; */
     cursor: pointer;
+    box-shadow: 0 0px 52px rgba(0, 254, 246, 0.7);
 }
 
 .nav-btn-deactivated{
@@ -89,6 +92,17 @@
 .nav-img{
     height: 100%;
     width: 100%;
+}
+
+.scroll-img{
+    box-shadow: 0 0px 8px rgba(0, 254, 246, 0.7);
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+.scroll-img:hover{
+    box-shadow: 0 0px 30px rgba(0, 254, 246, 0.7);
+    border: 2px solid rgb(255, 187, 0);
 }
 
 /* .scroll-img-parent{
