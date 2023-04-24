@@ -35,6 +35,13 @@ a:hover { text-decoration: none; color: aqua }
 
 a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
+#contact{
+    margin-top: 50vh;
+    margin-bottom: 90vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
 .nav{
     background-color: black;
     height: 5%;
@@ -60,6 +67,14 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 .nav-link{
     text-decoration: none;
     text-decoration-line: none ;
+    background-color: #000000;
+    padding: 5px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.visible{
+    background-color: #ffd000;
 }
 
 .logo-img{

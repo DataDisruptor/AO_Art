@@ -93,8 +93,8 @@ export default function MusicPlayer() {
 
   return (
     <div className="component">
-      <h2>Playing Now</h2>
-      <img className="musicCover" src="/3d1.jpg" height={'128px'} width={'128px'} />
+      <h2 className={isPlaying ? 'play-status-on' : 'play-status-off'}>Now Playing</h2>
+      <img className="musicCover" src="/3d1.jpg" height={'128px'} width={'128px'} alt="nomeaning"/>
       <div>
         <h3 className="title">{songName}</h3>
         <p className="subTitle">Adam</p>
@@ -102,17 +102,16 @@ export default function MusicPlayer() {
       <div>
         <div className="time">
           <p>
-            {currTime.min}:{currTime.sec}
+            {currTime.min.toString().length === 1 ? `0${currTime.min}` : currTime.min}:{currTime.sec.toString().length === 1 ? `0${currTime.sec}` : currTime.sec}
           </p>
           <p>
-            {time.min}:{time.sec}
+            {time.min.toString().length === 1 ? `0${time.min}` : time.min}:{time.sec.toString().length === 1 ? `0${time.sec}` : time.sec}
           </p>
         </div>
         {sound && <input
           type="range"
           min="0"
           max={duration / 1000}
-          defaultValue="0"
           value={seconds}
           className="timeline"
           onChange={(e) => {
@@ -121,7 +120,7 @@ export default function MusicPlayer() {
         />}
       </div>
       <div className="volume-bar">
-        <input type="range" min={0} max={100} defaultValue={100} value={volume} onChange={(value) => {onVolumeChanged(value)}} style={{background:'#ff2233'}}/>
+        <input type="range" min={0} max={100} value={volume} onChange={(value) => {onVolumeChanged(value)}} style={{background:'#ff2233'}}/>
       </div>
       <div>
         <button className="playButton" onClick={()=>{onPlaylistUpdate(-1)}}>

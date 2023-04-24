@@ -9,10 +9,12 @@ import ArchCanvas from '../components/BackgroundScene/Canvas3D/ArchCanvas';
 import X_Scroller from '../components/primitives/scrollers/sideScroller/X_Scroller';
 import MusicPlayer from '../components/primitives/musicPlayer/MusicPlayer';
 import { Link } from 'react-router-dom';
+import ContactInfo from '../components/primitives/contactComp/ContactInfo';
+import Footer from '../components/primitives/footer/Footer';
 
 
 
-export default function Home() {
+export default function Home({visibleSection} : {visibleSection : string}) {
 
   //3d-----------------------------------
 
@@ -24,6 +26,24 @@ export default function Home() {
 
   const onImageViewChange = (id : any, active : boolean, src : string) => {
     setImageView({id, active, src});
+  }
+
+  const updateImageView = (e : any) => {
+    console.log(e)
+    if(e.target.nodeName !== 'ARTICLE' && e.target.nodeName !== 'IMG' && e.target.nodeName !== 'path' && e.target.nodeName !== 'svg'){
+      setImageView({id: -1, active: false, src: ''});
+    }
+  }
+
+  const navigateImageGallery = (direction: number) => {
+
+    if (imageView.id + direction >= 0 && imageView.id + direction <= 4){
+      setImageView((prev) => ({
+        active: true,
+        id: imageView.id + direction, 
+        src: `e${imageView.id + direction + 1}.png`
+      }));
+    }
   }
 
   //3d-----------------------------------
@@ -75,6 +95,8 @@ export default function Home() {
     }
   }, [canvasOverlay])
 
+  
+
   return (
     <>
       <div className="canvas-container">
@@ -103,31 +125,34 @@ export default function Home() {
               </a>
             </div>
             
-            {true && <section  id='about' style={{height:'99vh', paddingTop: '20%'}}>
-              <div style={{height:'99vh'}} >
-                <a href='#programming'><button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming</button></a>
-                <a href='#3d'><button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button></a>  
-                <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
-                <section className='flex j-center'>
-                  <article className='about black'>
-                    <img className='m5' src='/about-me.png' alt='about' width={'300px'}/>
-                    <p>
-                      Hi, I am Addam
-                    </p>
-                  </article>
-                  
-                </section>
-              </div>
-
+            {true && <section>
+              <section className='m5' style={{paddingTop: '15%', paddingBottom:'50%'}}  id='about'>
+                <div>
+                  <a href='#programming'><button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming</button></a>
+                  <a href='#3d'><button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button></a>  
+                  <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
+                  <div className='flex j-center'>
+                    <article className='about black'>
+                      <img className='m5' src='/about-me.png' alt='about' width={'300px'}/>
+                      <p>
+                        Hi, I am Addam
+                      </p>
+                    </article>
+                    
+                  </div>
+                </div>
+              </section>
               
-              <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='programming'>
-                <img className='skill-img' src='/skill_programming.png' alt='programming'/>
-              </div>
+
+              {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
+              
               <article className="nav-area black">
-                {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
+                
                 {true && 
-                <>
-                  
+                <section id='programming' className='mt5 mb5 pb5'>
+                  <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
+                    <img className='skill-img' src='/skill_programming.png' alt='programming'/>
+                  </div>
                   <div className='swa' >
                     <div className="b-img-0 " >
                       <div className={`project-details ${!projectView.visible ? 'details-off' : ''}`} onClick={(e)=>{updateProjectViewState(e)}}>
@@ -216,14 +241,15 @@ export default function Home() {
                       </div>
                     </section> 
                   </div> 
-                </>
+                </section>
                 }
                 {/*3D----------------------------------------------------------------------3D-----------------------------------------------------------3D */}
-                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='3d'>
-                  <img className='skill-img' src='/skill_3d.png' alt='3d art'/>
-                </div>
+                
                 {true && 
-                <section >
+                <section id='3d' className='mt5 mb5 pb5'>
+                  <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
+                    <img className='skill-img' src='/skill_3d.png' alt='3d art'/>
+                  </div>
                   <div className='b-img-1 '>  
                     <div style={{position:'relative'}}>
                       <GenericCanvas/>
@@ -234,14 +260,18 @@ export default function Home() {
                         {canvasOverlay.active && <ArchCanvas hidden={!canvasOverlay.active} building={canvasOverlay.canvasId}/>}
                       </div>
 
-                      <div className={`project-details ${!imageView.active ? 'details-off' : ''}`} onClick={(e)=>{setImageView({id: -1, active: false, src: ''})}}>
+                      <div className={`project-details ${!imageView.active ? 'details-off' : ''}`} onClick={(e)=>{updateImageView(e)}}>
                         {imageView.active && 
                           <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
-                            <img src={imageView.src} alt='s'  style={{maxHeight: '100%', display:'flex'}}/>
-                            
+                            <img src={imageView.src} alt='s'  className='nav-img'/>
+                          <div className='overlay-nav'>
+                            <Icon icon='ic:round-navigate-before' className={`m2 ${ imageView.id === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(-1)} />
+                            <Icon icon='ic:round-navigate-next' className={`m2 ${ imageView.id === 4 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(1)} />
+                          </div>
                           </article>}
-
-                    </div>
+                          
+                          
+                      </div>
                       
                       <div className="p5 b-img-1" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
                         <article className="font-1 s2 area-text p3 m2"> 
@@ -280,7 +310,7 @@ export default function Home() {
                             {/* <GenericCanvas/> */}
                           </div>
                         </article>
-                        <X_Scroller onImageViewChange={onImageViewChange}/>
+                        <X_Scroller onImageViewChange={onImageViewChange} imageView={imageView}/>
                         {/* <a href="/#"> Portfolio </a> */}
                       </div>
                       <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">
@@ -301,11 +331,12 @@ export default function Home() {
                   
                 }
                 {/*Music----------------------------------------------------------------------Music-----------------------------------------------------------Music */}
-                <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} id='music'>
-                  <img className='skill-img' src='/skill_music.png' alt='music'/>
-                </div>
+                
                 {true && 
-                  <div >
+                  <section id='music' className='mt5 mb5 pb5'>
+                    <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
+                      <img className='skill-img' src='/skill_music.png' alt='music'/>
+                    </div>
                     <div className="b-img-2" >
                       <div className="p5">
                         <p className="font-1 s2 area-text"> 
@@ -314,42 +345,8 @@ export default function Home() {
                       </div>
                       <div className='flex j-center jt-center'>
                         <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/>
-                        {/* <h2 className="entry-title font-3 s3 m6">Original Music</h2> */}
                       </div>
                       <MusicPlayer/>
-                      {/* <div className='p5 j-center flex'>
-                        <section className='music-player p3'>
-                          <div className='j-even flex f-dir-row p4'>
-                            <div className='flex f-dir-row f-basis-5'>
-                              <Icon icon='emojione-v1:musical-note' width='64px' height='64px' className=''/>
-                              <span className='song-title s1 font-3 white'>{songName}</span>
-                            </div>
-                            <div className='flex f-dir-row'>
-                              <div className='music-player-button m1'>
-                                <Icon onClick={()=> onPlaylistUpdate(-1)} icon='mdi:previous-title' width='48px' height='48px' className=''/>
-                              </div>
-                              <div className='music-player-button m1'>
-                                <Icon onClick={()=> onPlaylistUpdate(1)} icon='mdi:next-title' width='48px' height='48px' className=''/>
-                              </div>            
-                            </div>
-                            
-                          </div>
-                          <div className='j-center flex '>
-                            <audio ref={musicPlayer}
-                              // ref={musicPlayer}
-                              // height={'40px'} 
-                              // width={'45vw'}
-                              src={song}
-                              // url= 
-                              // playIcon={<Icon icon='icon-park:play' className="m2 skill-icon"/>} 
-                              controls={true} 
-                              style={{minHeight: '150px', minWidth: '30vw'}} 
-                            /> 
-                          </div>
-                          
-                        </section>
-                      </div> */}
-                      {/*width="560" height="315" */}
                       <div className='flex j-center jt-center'>
                         <img style={{minWidth: '300px', width: '30vw'}} src='/Tributes.png' alt='music'/>
                       </div>
@@ -372,18 +369,15 @@ export default function Home() {
                         <img src="french-horn.svg" alt="img" className="m2 skill-icon"/>
                       </div>
                     </section>
-                  </div>
+                  </section>
                 }
               </article>  
+              <ContactInfo/>
+              <Footer/>
             </section> }
           </div>
         </div>}
-        <div className='p5 mt7 mb7 swa' style={{border: '5px dashed grey'}} id='contact'>
-          <h2 className='black font-7 s3'>CONTACT</h2>
-          <p className='black font-1 s2'>
-            If you want to contact me then please do not hesitate to reach out about anything.
-          </p>
-        </div>
+        
       </div>
     </>
   )
