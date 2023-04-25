@@ -307,15 +307,15 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                         </article>
                         {/* <img onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}}  src="3d2.png" alt="img" className="hero-img m2"/>
                         <img onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} src="3d1.png" alt="img" className="hero-img m2"/> */}
-                        <section className='flex f-dir-row j-center'>
+                        <section className='tour-img-container'>
                           <div onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} className='m5 portal-3d portal-1'>
-                            <p className='font-2 s3 white'>
+                            <p className='font-2 white'>
                               TAKE A TOUR
                             </p>
                           </div>
 
                           <div onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}} className='m5 portal-3d portal-2'>
-                            <p className='font-2 s3 white'>
+                            <p className='font-2 white'>
                               TAKE A TOUR
                             </p>
                           </div>
