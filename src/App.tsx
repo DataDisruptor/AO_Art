@@ -93,7 +93,7 @@ function App() {
       <div className='nav'>
         <img className='logo-img' src='/aologo.png' height='40px' width='45px' alt='logo'/>
         {window_x > 500 ? 
-        <ul className='navigation'>
+        <ul className='navigation' style={{padding: '1%'}}>
           <li><a href='#home' className={`nav-link font-1 ${visibleSection === 'home' ? 'visible' : ''}`}>Home</a></li>
           <li><a href='#about' className={`nav-link font-1 ${visibleSection === 'about' ? 'visible' : ''}`}>About</a></li>
           <li><a href='#programming' className={`nav-link font-1 ${visibleSection === 'programming' ? 'visible' : ''}`}>Programming</a></li>

@@ -126,6 +126,8 @@ export default function Home({visibleSection} : {visibleSection : string}) {
   const [print_index, print_setIndex] = useState(-1);
   const [print_iteration, print_setIteration] = useState(-1);
   const [print_text, print_setText] = useState('')
+  let Timer : NodeJS.Timer;
+  const printTimer : MutableRefObject<NodeJS.Timer | undefined> = useRef()
 
   useEffect(()=> {
     print_setIndex(0)
@@ -147,13 +149,15 @@ export default function Home({visibleSection} : {visibleSection : string}) {
   useEffect(() => {
     if(print_info.length > 0 && print_iteration === 0){
       print_setShouldUpdate(true);
+    } else {
+      print_setShouldUpdate(false);
     }
   }, [print_info, print_iteration])
 
   useEffect(()=> {
     if(print_shouldUpdate ){
       print_setText('');
-      print_setShouldUpdate(false);
+      
     }
   }, [print_shouldUpdate])
 
@@ -163,96 +167,23 @@ export default function Home({visibleSection} : {visibleSection : string}) {
     }
   },[print_text])
 
+  
+
   useEffect(()=> {
     // if(print_info[print_iteration] !== undefined)
-    setTimeout(() => {
+    printTimer.current = setTimeout(() => {
       print_setText(prev => prev + print_info[print_iteration])
-    }, 20)
+    }, 15)
     ;
   }, [print_iteration, print_info])
+
+  const handleAboutIndexUpdate = (direction: number) => {
+    if (print_index + direction >= 0 && print_index + direction <= 2){
+      clearTimeout(printTimer.current)
+      print_setIndex(prev => prev + direction)
+    }
+  }
   
-  // const [aboutText, updateAboutText] = useState('');
-  // const [printIteration, setPrintIteration] = useState(0);
-  // const [printMode, setPrintMode] = useState('')
-
-  // let printTimer;
-  // const Timer : MutableRefObject<NodeJS.Timer> | any = useRef(printTimer);
-  // const [aboutInfoIndex, setAboutInfoIndex] = useState(0);
-  // const [currentAboutParagraph, setCurrentAboutParagraph] = useState(info_0)
-
-  // const [printTextStructure, setPrintTextStructure] = useState({
-  //   index:-1,
-  //   iteration: 0,
-  //   info: ``,
-  //   text: ``
-  // })
-  // useEffect(()=>{
-  //   setPrintTextStructure({
-  //     index:0,
-  //     iteration:0,
-  //     info: currentAboutParagraph,
-  //     text: ``
-  //   })
-  // },[])
-  
-  // const onInfoIndexUpdate = (direction : number) => {
-  //   if(printTextStructure.index + direction >= 0 && printTextStructure.index + direction <= 2){
-  //     setAboutInfoIndex(printTextStructure.index + direction);
-  //     setPrintTextStructure(prev => ({...prev, index: printTextStructure.index + direction}))
-  //     // updateAboutText('')
-      
-  //   }
-  //   // setPrintMode('printing')
-  //   // Timer = setInterval(printInfo, 50);
-  // }
-
-  // useEffect(()=> {
-  //   switch (aboutInfoIndex){
-  //     case 0: setCurrentAboutParagraph(info_0); setPrintTextStructure(prev => ({...prev, info: info_0})); break;
-  //     case 1: setCurrentAboutParagraph(info_1); setPrintTextStructure(prev => ({...prev, info: info_1}));  break;
-  //     case 2: setCurrentAboutParagraph(info_2); setPrintTextStructure(prev => ({...prev, info: info_2}));  break;
-  //   }
-  // }, [aboutInfoIndex, printTextStructure.index, info_0, info_1, info_2])
-
-  // const printInfo = () => {
-  //   console.log('printTextStructure.iteration', printTextStructure.iteration)
-  //   console.log('printTextStructure.info.length', printTextStructure.info.length)
-  //   if (true){
-  //     setPrintTextStructure( prev => ({
-  //       ...prev,
-  //       iteration: prev.iteration + 1,
-  //       text: prev.text + prev.info[prev.iteration]
-  //     }))
-  //   }
-  //   else
-  //   {
-  //     clearInterval(Timer.current)
-  //     return;
-      
-  //   }
-  // }
-
-  // useEffect(()=> {
-    
-  //   Timer.current = setInterval(printInfo, 200)
-
-  // }, [aboutInfoIndex])
-
-  // useEffect(()=> {
-  //   if (!currentAboutParagraph[printTextStructure.index] == undefined){
-  //     // updateAboutText((prevText)=> prevText + currentAboutParagraph[printIteration]);
-  //     setPrintTextStructure( prev => ({
-  //       ...prev,
-  //       iteration: prev.iteration + 1,
-  //       text: prev.text + prev.info[prev.iteration]
-  //     }))
-  //   } else{
-  //     clearInterval(Timer.current)
-  //     return;
-  //   }
-  //   console.log('iteration')
-    
-  // }, [printTextStructure.iteration])
 
   return (
     <>
@@ -266,7 +197,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
         { true && 
         <div className="flex j-center">
           <div className="f-dir-col jt-center">
-            <div className="p5" style={{height:'99vh', marginTop: '15vh'}} id='home'>
+            <div className="p5" style={{height:'99vh'}} id='home'>
 
               <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>        
               <h2 className='font-9 s3 flex f-wrap j-even  black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
@@ -277,7 +208,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                 <Icon icon='ant-design:linkedin-outlined' className="m3 link-icon"/>
                 <Icon icon='academicons:cv-square' className="m3 link-icon"/>
               </div>
-              <a href={'#about'}>
+              <a href={'#about'} className='p6'>
                 <Icon icon='material-symbols:keyboard-arrow-down-rounded' className="m3 down-arrow"/>
               </a>
             </div>
@@ -289,37 +220,18 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                   <a href='#3d'><button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button></a>  
                   <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
                   <div className='flex j-center'>
-                    <article className='about black'>
+                    <article className='about black' style={{minHeight: '70vh'}}>
                       <img className='m5' src='/about-me.png' alt='about' width={'50%'}/>
-                      <p className='p3 font-1 s2 jt-left'>
+                      <div className='overlay-nav'>
+                        <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => handleAboutIndexUpdate(-1)} />
+                        <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'}onClick={() => handleAboutIndexUpdate(1)} />
+                      </div>
+                      <p className='p3 font-11 s2 jt-left'>
                         {print_text}
                       </p>
                       
-                      {/* {aboutInfoIndex === 0 && <p className='p3 font-1 s2'>
-                        Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation. <br/>
-                        As a little kid, I remember myself forcing my parents to write down stories I came up with before learning how to read and write, and
-                        even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. {'(Sorry mom!)'} 
-                      </p>}
-                      {aboutInfoIndex === 1 && <p className='p3 font-1 s2'>
-                        Growing up over the years, I had discovered music as a powerful medium through which my urge for creation and conveying stories could be expressed.
-                        I had studied various instruments in dedication, formed bands and toured at live concerts, studied modern musical production tools and techniques,
-                        and had the pleasure of composing music for live theatre and contemporary dance routines, as well as the opportunity to pass on my knowledge to
-                        some extremely passionate and talented young students.
-                      </p>}
-                      {aboutInfoIndex === 2 && <p className='p3 font-1 s2'>
-                        As a detail-oriented individual with strong affinity for technical challenges and critical thinking, I had found myself falling in love with the
-                        world of software engineering, completely immersed, horrified and amazed by the infinity of possibilities that could be unleashed with programming 
-                        as a tool at my disposal. My passion for creation has forced me into another endless pursuit, where my new journey began with Game Development in
-                        C++ and Unreal Engine, as well as some extensive detours into the realm of Computer Graphics, learning 3D modeling and rendering tools. <br/>
-                        As time passed, my interest and curiosity had expanded into numerous development domains, and have successfully completed the Fullstack 
-                        web development program at <a>Masterschool</a>, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
-                        invaluable programming experience, further pushing the boundaries of my imagination and creativity, demystifying one bug at a time, persistently and 
-                        steadily, expanding and revealing new horizons within the world of software engineering.
-                      </p>} */}
-                      <div className='overlay-nav'>
-                        <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => print_setIndex(prev => prev - 1)} />
-                        <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => print_setIndex(prev => prev + 1)} />
-                      </div>
+                      
+                      
                     </article>
                     
                   </div>
