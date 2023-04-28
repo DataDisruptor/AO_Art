@@ -5,10 +5,36 @@ import LandingCanvas from './components/BackgroundScene/Canvas3D/LandingCanvas';
 import Homepage from './pages/Homepage';
 import Home from './pages/Home';
 import ArchCanvas from './components/BackgroundScene/Canvas3D/ArchCanvas';
-import { useEffect, useState } from 'react';
-
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import GenericOverlay from './components/primitives/overlays/genericOverlay/GenericOverlay';
 
 function App() {
+
+  // Window Size Tracking -----------------------------------------------------------------------
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const [windowSize, updateWindowSize] = useState({window_x: window.innerWidth, window_y: window.innerHeight})
+
+  const handleResize = (e : any) => {
+    console.log('RESIZE!', e)
+    updateWindowSize({window_x: e.target.innerWidth, window_y: e.target.innerHeight});
+    if(e.target.innerWidth > 500){
+      setSV_Visible(false);
+    }
+  }
+
+  const {window_x, window_y} = windowSize;
+
+  const [SV_Visible, setSV_Visible] = useState(false);
+  function handleSmallNavigation(){
+    setSV_Visible(!SV_Visible);
+  }
 
   // Scroll Tracking -----------------------------------------------------------------------
   useEffect(() => {
@@ -53,10 +79,20 @@ function App() {
 
   useEffect(()=> {console.log(visibleSection)}, [visibleSection])
 
+  const [navigated, setNavigated] = useState('waiting')
+
+  useEffect(()=>{
+    if (navigated === 'navigated'){
+      setSV_Visible(false)
+    }
+  },[navigated])
+
   return (
     <>
+      { window_x <= 500 && <GenericOverlay active={SV_Visible} updateVisibilityState={() => setSV_Visible(false)} visibleSection={visibleSection}/>}
       <div className='nav'>
         <img className='logo-img' src='/aologo.png' height='40px' width='45px' alt='logo'/>
+        {window_x > 500 ? 
         <ul className='navigation'>
           <li><a href='#home' className={`nav-link font-1 ${visibleSection === 'home' ? 'visible' : ''}`}>Home</a></li>
           <li><a href='#about' className={`nav-link font-1 ${visibleSection === 'about' ? 'visible' : ''}`}>About</a></li>
@@ -64,7 +100,12 @@ function App() {
           <li><a href='#3d' className={`nav-link font-1 ${visibleSection === '3d' ? 'visible' : ''}`}>3D Art</a></li>
           <li><a href='#music' className={`nav-link font-1 ${visibleSection === 'music' ? 'visible' : ''}`}>Music</a></li>
           <li><a href='#contact' className={`nav-link font-1 ${visibleSection === 'contact' ? 'visible' : ''}`}>Contact</a></li>
-        </ul>
+        </ul> 
+        : 
+        <div className='small-nav'>
+          <img className='small-nav-img' src='/aologo.png' height='40px' width='45px' alt='nav' onClick={() => {handleSmallNavigation()}}/>
+          
+        </div>}
       </div>
       <BrowserRouter>
         <Routes>

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from "react"
+import { MutableRefObject, useEffect, useRef, useState } from "react"
 import { Icon } from '@iconify/react';
 import ReactPlayer from "react-player";
 import Canvas3D from "../components/BackgroundScene/Canvas3D/Canvas3D";
@@ -95,7 +95,164 @@ export default function Home({visibleSection} : {visibleSection : string}) {
     }
   }, [canvasOverlay])
 
+  //ABOUT ------------------------------------------------------------------------------------
+
+  const info_0 = ` Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation. <br/>
+  As a little kid, I remember myself forcing my parents to write down stories I came up with before learning how to read and write, and
+  even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. {'(Sorry mom!)'} `;
+  const info_1 = ` Growing up over the years, I had discovered music as a powerful medium through which my urge for creation and conveying stories could be expressed.
+  I had studied various instruments in dedication, formed bands and toured at live concerts, studied modern musical production tools and techniques,
+  and had the pleasure of composing music for live theatre and contemporary dance routines, as well as the opportunity to pass on my knowledge to
+  some extremely passionate and talented young students.`;
+  const info_2 = ` As a detail-oriented individual with strong affinity for technical challenges and critical thinking, I had found myself falling in love with the
+  world of software engineering, completely immersed, horrified and amazed by the infinity of possibilities that could be unleashed with programming 
+  as a tool at my disposal. My passion for creation has forced me into another endless pursuit, where my new journey began with Game Development in
+  C++ and Unreal Engine, as well as some extensive detours into the realm of Computer Graphics, learning 3D modeling and rendering tools. <br/>
+  As time passed, my interest and curiosity had expanded into numerous development domains, and have successfully completed the Fullstack 
+  web development program at <a>Masterschool</a>, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
+  invaluable programming experience, further pushing the boundaries of my imagination and creativity, demystifying one bug at a time, persistently and 
+  steadily, expanding and revealing new horizons within the world of software engineering.`;
+
+  /*
+    - shouldUpdate => true
+    - delete old text
+    - set current about paragraph index
+    - update text
+    - update iteration
+  */
+
+  const [print_shouldUpdate, print_setShouldUpdate] = useState(false);
+  const [print_info, print_setInfo] = useState('');
+  const [print_index, print_setIndex] = useState(-1);
+  const [print_iteration, print_setIteration] = useState(-1);
+  const [print_text, print_setText] = useState('')
+
+  useEffect(()=> {
+    print_setIndex(0)
+  }, [])
+
+  useEffect(() => {
+    if(print_index >= 0 && print_index <= 2){
+      switch (print_index){
+        case 0: print_setInfo(info_0); break;
+        case 1: print_setInfo(info_1); break;
+        case 2: print_setInfo(info_2); break;
+      }
+      print_setIteration(0);
+    }
+    // else if(print_index > 2) print_setIndex(2);
+    // else if( print_index < 0) print_setIndex(0)
+  }, [print_index, info_0, info_1, info_2])
+
+  useEffect(() => {
+    if(print_info.length > 0 && print_iteration === 0){
+      print_setShouldUpdate(true);
+    }
+  }, [print_info, print_iteration])
+
+  useEffect(()=> {
+    if(print_shouldUpdate ){
+      print_setText('');
+      print_setShouldUpdate(false);
+    }
+  }, [print_shouldUpdate])
+
+  useEffect(()=> {
+    if(print_iteration + 1 < print_info.length){
+      print_setIteration(prev => prev + 1);
+    }
+  },[print_text])
+
+  useEffect(()=> {
+    // if(print_info[print_iteration] !== undefined)
+    setTimeout(() => {
+      print_setText(prev => prev + print_info[print_iteration])
+    }, 20)
+    ;
+  }, [print_iteration, print_info])
   
+  // const [aboutText, updateAboutText] = useState('');
+  // const [printIteration, setPrintIteration] = useState(0);
+  // const [printMode, setPrintMode] = useState('')
+
+  // let printTimer;
+  // const Timer : MutableRefObject<NodeJS.Timer> | any = useRef(printTimer);
+  // const [aboutInfoIndex, setAboutInfoIndex] = useState(0);
+  // const [currentAboutParagraph, setCurrentAboutParagraph] = useState(info_0)
+
+  // const [printTextStructure, setPrintTextStructure] = useState({
+  //   index:-1,
+  //   iteration: 0,
+  //   info: ``,
+  //   text: ``
+  // })
+  // useEffect(()=>{
+  //   setPrintTextStructure({
+  //     index:0,
+  //     iteration:0,
+  //     info: currentAboutParagraph,
+  //     text: ``
+  //   })
+  // },[])
+  
+  // const onInfoIndexUpdate = (direction : number) => {
+  //   if(printTextStructure.index + direction >= 0 && printTextStructure.index + direction <= 2){
+  //     setAboutInfoIndex(printTextStructure.index + direction);
+  //     setPrintTextStructure(prev => ({...prev, index: printTextStructure.index + direction}))
+  //     // updateAboutText('')
+      
+  //   }
+  //   // setPrintMode('printing')
+  //   // Timer = setInterval(printInfo, 50);
+  // }
+
+  // useEffect(()=> {
+  //   switch (aboutInfoIndex){
+  //     case 0: setCurrentAboutParagraph(info_0); setPrintTextStructure(prev => ({...prev, info: info_0})); break;
+  //     case 1: setCurrentAboutParagraph(info_1); setPrintTextStructure(prev => ({...prev, info: info_1}));  break;
+  //     case 2: setCurrentAboutParagraph(info_2); setPrintTextStructure(prev => ({...prev, info: info_2}));  break;
+  //   }
+  // }, [aboutInfoIndex, printTextStructure.index, info_0, info_1, info_2])
+
+  // const printInfo = () => {
+  //   console.log('printTextStructure.iteration', printTextStructure.iteration)
+  //   console.log('printTextStructure.info.length', printTextStructure.info.length)
+  //   if (true){
+  //     setPrintTextStructure( prev => ({
+  //       ...prev,
+  //       iteration: prev.iteration + 1,
+  //       text: prev.text + prev.info[prev.iteration]
+  //     }))
+  //   }
+  //   else
+  //   {
+  //     clearInterval(Timer.current)
+  //     return;
+      
+  //   }
+  // }
+
+  // useEffect(()=> {
+    
+  //   Timer.current = setInterval(printInfo, 200)
+
+  // }, [aboutInfoIndex])
+
+  // useEffect(()=> {
+  //   if (!currentAboutParagraph[printTextStructure.index] == undefined){
+  //     // updateAboutText((prevText)=> prevText + currentAboutParagraph[printIteration]);
+  //     setPrintTextStructure( prev => ({
+  //       ...prev,
+  //       iteration: prev.iteration + 1,
+  //       text: prev.text + prev.info[prev.iteration]
+  //     }))
+  //   } else{
+  //     clearInterval(Timer.current)
+  //     return;
+  //   }
+  //   console.log('iteration')
+    
+  // }, [printTextStructure.iteration])
 
   return (
     <>
@@ -125,7 +282,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
               </a>
             </div>
             
-            {true && <section>
+            <section>
               <section className='m5' style={{paddingTop: '15%', paddingBottom:'50%'}}  id='about'>
                 <div>
                   <a href='#programming'><button className={`nav-button font-1 s2 btn-left ${ skillView === 'programming' ? '' : ''}`} onClick={()=> setSkillView('programming')}>Programming</button></a>
@@ -134,18 +291,22 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                   <div className='flex j-center'>
                     <article className='about black'>
                       <img className='m5' src='/about-me.png' alt='about' width={'50%'}/>
-                      <p className='p3 font-1 s2'>
+                      <p className='p3 font-1 s2 jt-left'>
+                        {print_text}
+                      </p>
+                      
+                      {/* {aboutInfoIndex === 0 && <p className='p3 font-1 s2'>
                         Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation. <br/>
                         As a little kid, I remember myself forcing my parents to write down stories I came up with before learning how to read and write, and
                         even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. {'(Sorry mom!)'} 
-                      </p>
-                      <p className='p3 font-1 s2'>
+                      </p>}
+                      {aboutInfoIndex === 1 && <p className='p3 font-1 s2'>
                         Growing up over the years, I had discovered music as a powerful medium through which my urge for creation and conveying stories could be expressed.
                         I had studied various instruments in dedication, formed bands and toured at live concerts, studied modern musical production tools and techniques,
                         and had the pleasure of composing music for live theatre and contemporary dance routines, as well as the opportunity to pass on my knowledge to
                         some extremely passionate and talented young students.
-                      </p>
-                      <p className='p3 font-1 s2'>
+                      </p>}
+                      {aboutInfoIndex === 2 && <p className='p3 font-1 s2'>
                         As a detail-oriented individual with strong affinity for technical challenges and critical thinking, I had found myself falling in love with the
                         world of software engineering, completely immersed, horrified and amazed by the infinity of possibilities that could be unleashed with programming 
                         as a tool at my disposal. My passion for creation has forced me into another endless pursuit, where my new journey began with Game Development in
@@ -154,8 +315,11 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                         web development program at <a>Masterschool</a>, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
                         invaluable programming experience, further pushing the boundaries of my imagination and creativity, demystifying one bug at a time, persistently and 
                         steadily, expanding and revealing new horizons within the world of software engineering.
-
-                      </p>
+                      </p>} */}
+                      <div className='overlay-nav'>
+                        <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => print_setIndex(prev => prev - 1)} />
+                        <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => print_setIndex(prev => prev + 1)} />
+                      </div>
                     </article>
                     
                   </div>
@@ -393,7 +557,8 @@ export default function Home({visibleSection} : {visibleSection : string}) {
               </article>  
               <ContactInfo/>
               <Footer/>
-            </section> }
+            </section>
+
           </div>
         </div>}
         
