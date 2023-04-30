@@ -14,7 +14,7 @@ import Footer from '../components/primitives/footer/Footer';
 
 
 
-export default function Home({visibleSection} : {visibleSection : string}) {
+export default function Home({visibleSection, windowSize} : {visibleSection : string, windowSize: {window_x: number, window_y: number}}) {
 
   //3d-----------------------------------
 
@@ -38,10 +38,31 @@ export default function Home({visibleSection} : {visibleSection : string}) {
   const navigateImageGallery = (direction: number) => {
 
     if (imageView.id + direction >= 0 && imageView.id + direction <= 4){
+      let imgFMT = ''
+      console.log('windowSize', windowSize)
+      
+      if (windowSize.window_x >= 1920){
+        imgFMT = 'max'
+      }
+      else if (windowSize.window_x >= 1300){
+        imgFMT = 'normal'
+      }
+      else if (windowSize.window_x >= 1000){
+        imgFMT = 'square'
+      }
+      else if (windowSize.window_x < windowSize.window_y){
+        imgFMT = 'mobile'
+      }
+      else{
+        imgFMT = 'normal'
+      }
+      
+      
+      console.log(imgFMT)
       setImageView((prev) => ({
         active: true,
         id: imageView.id + direction, 
-        src: `e${imageView.id + direction + 1}.png`
+        src: `hs-imgs/e${imageView.id + direction + 1}-${imgFMT}.jpg`
       }));
     }
   }
@@ -54,23 +75,29 @@ export default function Home({visibleSection} : {visibleSection : string}) {
   const [projectView, setProjectView] = useState({
     name: '',
     description: '',
+    src: '',
+    link: '',
     visible: false
   })
 
+  const description_RegimeChange = `We all know that the end of mankind by the machine uprising is getting nearer any day now! 
+  So why not glimpse into the future we'll never get to see?
+  In early development, Regime Change is a world where authority, rules and power remain - even without any human in sight.`;
+
   const onProjectViewChange = (name: string, description: string, visible: boolean) => {
     if(!visible){
-      setProjectView({name : '', description : '', visible: false})
+      setProjectView({name : '', src: '', link: '', description : '', visible: false})
       return;
     }
     switch (name){
-      case 'strategize': setProjectView({name, description, visible}); break;
-      case 'regime-change': setProjectView({name, description, visible}); break;
+      case 'Strategize': setProjectView({name, src: 'strategize_logo2_normal.jpg', link: '', description, visible}); break;
+      case 'Regime Change': setProjectView({name, src: 'RegimeChangeBanner.jpg', link: '', description: description_RegimeChange, visible}); break;
     }
   }
 
   const updateProjectViewState = (e: any) => {
     if(e.target.nodeName === 'DIV'){
-      setProjectView({name : '', description : '', visible: false})
+      setProjectView({name : '', src: '', link: '', description : '', visible: false})
     }
   }
 
@@ -197,10 +224,10 @@ export default function Home({visibleSection} : {visibleSection : string}) {
         { true && 
         <div className="flex j-center">
           <div className="f-dir-col jt-center">
-            <div className="p5" style={{height:'99vh'}} id='home'>
+            <div className="p5 b-img-title" style={{height:'99vh'}} id='home'>
 
               <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>        
-              <h2 className='font-9 s3 flex f-wrap j-even  black'><span className='tech'>Tech</span> <span className='art'>Art</span></h2>
+              <h2 className='font-9 s3 flex f-wrap j-even teal'><span className=''>Tech</span> <span className=''>Art</span></h2>
 
               <div className='flex f-dir-row j-center mt7 mb7 p5'>
                 <Icon icon='material-symbols:attach-email-outline' className="m3 link-icon"/>
@@ -221,12 +248,13 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                   <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
                   <div className='flex j-center'>
                     <article className='about black' style={{minHeight: '70vh'}}>
-                      <img className='m5' src='/about-me.png' alt='about' width={'50%'}/>
+                      {/* <img className='m5' src='/about-me.png' alt='about' width={'50%'}/> */}
+                      <h3 className='m6 font-9 s3 teal'>About Me</h3>
                       <div className='overlay-nav'>
                         <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => handleAboutIndexUpdate(-1)} />
                         <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'}onClick={() => handleAboutIndexUpdate(1)} />
                       </div>
-                      <p className='p3 font-11 s2 jt-left'>
+                      <p className='p7 font-1 s2 jt-left'>
                         {print_text}
                       </p>
                       
@@ -239,11 +267,12 @@ export default function Home({visibleSection} : {visibleSection : string}) {
               </section>
               
 
-              {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
+              
               
               <article className="nav-area black">
                 
-                {true && 
+                {/*Tech----------------------------------------------------------------------Tech-----------------------------------------------------------Tech */}
+                
                 <section id='programming' className='mt5 mb5 pb5'>
                   <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
                     <img className='skill-img' src='/skill_programming.png' alt='programming'/>
@@ -252,12 +281,14 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                     <div className="b-img-0 " >
                       <div className={`project-details ${!projectView.visible ? 'details-off' : ''}`} onClick={(e)=>{updateProjectViewState(e)}}>
                         {projectView.visible && 
-                          <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
-                            <h2 className='white font-1 s3'>{projectView.name}</h2> 
-                            <p className='white font-1 s2'>
+                          <article className={`project-article article-${projectView.name === 'Strategize' ? 'strategize' : 'regime-change'}`} style={{border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
+                            <h2 className='white font-1 s3 area-text'>{projectView.name}</h2> 
+                            
+                            <p className='white font-1 s2 area-text'>
                               {projectView.description}
                             </p>
-                            
+                            {/* <img src={projectView.src} alt={projectView.name} style={{width: '100%', height: '60%'} }/> */}
+
                           </article>}
                       </div>
                       <div className="p5 ">
@@ -275,7 +306,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                               <img src="strategize_logo.png" alt="img" className="hero-img"/>
                             </div> */}
                             <p>
-                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('strategize', 'stuff..1', true)}/>
+                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('Strategize', 'stuff..1', true)}/>
                               <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
                             </p>
                             {/* <a href='https://strategize-fe.vercel.app/'>  </a>  */}
@@ -293,7 +324,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                           </article>
                           <article className="p1 entry-article article-regime-change m5">
                             <p>
-                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('regime-change', 'stuff..2', true)}/>
+                              <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('Regime Change', 'stuff..2', true)}/>
                               <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
                             </p>
                             {/* <h2 className="entry-title font-3 s2">Regime Change <span className='teal'>|</span> Game</h2>
@@ -337,10 +368,9 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                     </section> 
                   </div> 
                 </section>
-                }
+                
                 {/*3D----------------------------------------------------------------------3D-----------------------------------------------------------3D */}
                 
-                {true && 
                 <section id='3d' className='mt5 mb5 pb5'>
                   <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
                     <img className='skill-img' src='/skill_3d.png' alt='3d art'/>
@@ -358,7 +388,7 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                       <div className={`project-details ${!imageView.active ? 'details-off' : ''}`} onClick={(e)=>{updateImageView(e)}}>
                         {imageView.active && 
                           <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
-                            <img src={imageView.src} alt='s'  className='nav-img'/>
+                          <img src={imageView.src} alt='s'  className='nav-img'/>
                           <div className='overlay-nav'>
                             <Icon icon='ic:round-navigate-before' className={`m2 ${ imageView.id === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(-1)} />
                             <Icon icon='ic:round-navigate-next' className={`m2 ${ imageView.id === 4 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(1)} />
@@ -385,13 +415,13 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                         <img onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} src="3d1.png" alt="img" className="hero-img m2"/> */}
                         <section className='tour-img-container'>
                           <div onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} className='m5 portal-3d portal-1'>
-                            <p className='font-2 white'>
+                            <p className='font-9 teal'>
                               TAKE A TOUR
                             </p>
                           </div>
 
                           <div onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}} className='m5 portal-3d portal-2'>
-                            <p className='font-2 white'>
+                            <p className='font-9 teal'>
                               TAKE A TOUR
                             </p>
                           </div>
@@ -424,11 +454,10 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                   </div>
                 </section>
                   
-                }
+                
                 {/*Music----------------------------------------------------------------------Music-----------------------------------------------------------Music */}
                 
-                {true && 
-                  <section id='music' className='mt5 mb5 pb5'>
+                <section id='music' className='mt5 mb5 pb5'>
                     <div className='mt6 skill-img-container' style={{backgroundColor: 'black'}} >
                       <img className='skill-img' src='/skill_music.png' alt='music'/>
                     </div>
@@ -439,11 +468,13 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                         </p>
                       </div>
                       <div className='flex j-center jt-center'>
-                        <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/>
+                        {/* <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/> */}
+                        <h3 className='m6 font-9 s3 teal'>Originals</h3>
                       </div>
                       <MusicPlayer/>
                       <div className='flex j-center jt-center'>
-                        <img style={{minWidth: '300px', width: '30vw'}} src='/Tributes.png' alt='music'/>
+                        {/* <img style={{minWidth: '300px', width: '30vw'}} src='/Tributes.png' alt='music'/> */}
+                        <h3 className='m6 font-9 s3 teal'>Tributes</h3>
                       </div>
                       
                       <iframe className='vid-frame' src="https://www.youtube.com/embed/5RbIy67mfII" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
@@ -464,8 +495,8 @@ export default function Home({visibleSection} : {visibleSection : string}) {
                         <img src="french-horn.svg" alt="img" className="m2 skill-icon"/>
                       </div>
                     </section>
-                  </section>
-                }
+                </section>
+                
               </article>  
               <ContactInfo/>
               <Footer/>

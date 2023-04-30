@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 export default function X_Scroller({onImageViewChange, imageView} : any) {
 
     const images : string [] = [
-        'e1.png', 'e2.png',
-        'e3.png', 'e4.png', 'e5.png', 
+        'hs-imgs/e1-normal.jpg', 'hs-imgs/e2-normal.jpg',
+        'hs-imgs/e3-normal.jpg', 'hs-imgs/e4-normal.jpg', 'hs-imgs/e5-normal.jpg', 
     ]
 
     const scrollerRef : any = useRef(null);

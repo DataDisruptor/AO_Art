@@ -60,7 +60,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 }
 
 .navigation li{
-    margin: 20px;
+    margin-left: 20px;
     align-self: center;
 }
 
@@ -139,20 +139,20 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .main-title {
-    background-image: url('../../public/b9.jpg');
+    /* background-image: url('../../public/b7.jpg'); */
     background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    /* -webkit-text-fill-color: transparent; */
+    color: #000000;
     /* For WebKit/Blink */
-    -webkit-text-stroke: 1pt rgba(0, 0, 0, 0.288);
+    -webkit-text-stroke: 1pt rgb(0, 251, 255);
 
     /* For Firefox */
-    text-stroke: 1px black;
+    text-stroke: 1px rgb(0, 253, 236);
     -webkit-text-stroke-width: 1px;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-text-fill-color: transparent; */
 }
 .tech {
-    background-image: url('../../public/b1.jpg');
+    
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
@@ -165,7 +165,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
     -webkit-text-fill-color: transparent;
 }
 .art {
-    background-image: url('../../public/b1.jpg');
+    
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
@@ -380,7 +380,17 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(81, 79, 79);
+    
     /* background-image: linear-gradient(to right, #ffffff, #ffffff7d, #ffffff00); */
+}
+
+.b-img-title{
+    /* background: url('../../public/b3-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; */
+    /* background-color: rgba(240, 248, 255, 0); */
+    /* background-image: linear-gradient(to bottom, #5151517d, #5352526f, #4141413d, #1c1c1c32, #07070700); */
 }
 
 .b-img-1{
@@ -516,7 +526,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
         width: 525px;
     }
     .navigation li{
-        margin: 15px;
+        margin-left: 15px;
     }
 }
 
@@ -536,7 +546,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
         width: 500px;
     }
     .navigation li{
-        margin: 10px;
+        margin-left: 10px;
     }
 }
 
@@ -570,7 +580,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
         width: 460px;
     }
     .navigation li{
-        margin: 5px;
+        margin-left: 5px;
     }
 }
 
@@ -586,7 +596,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
         font-size: 80pt;
     }
     .navigation li{
-        margin: 3px;
+        margin-left: 3px;
     }
 }
 
@@ -599,7 +609,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
         width: 410px;
     }
     .navigation li{
-        margin: 2px;
+        margin-left: 1px;
     }
 }
 
