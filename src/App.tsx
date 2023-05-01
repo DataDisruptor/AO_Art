@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import ArchCanvas from './components/BackgroundScene/Canvas3D/ArchCanvas';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import GenericOverlay from './components/primitives/overlays/genericOverlay/GenericOverlay';
+import { Icon } from '@iconify/react';
 
 function App() {
 
@@ -104,8 +105,8 @@ function App() {
         </ul> 
         : 
         <div className='small-nav'>
-          <img className='small-nav-img' src='/aologo.png' height='40px' width='45px' alt='nav' onClick={() => {handleSmallNavigation()}}/>
-          
+          {/* <img className='small-nav-img' src='/aologo.png' height='40px' width='45px' alt='nav' onClick={() => {handleSmallNavigation()}}/> */}
+          <Icon icon='fluent:navigation-16-filled' className="m2 small-nav-img" onClick={() => {handleSmallNavigation()}}/>
         </div>}
       </div>
       <BrowserRouter>
