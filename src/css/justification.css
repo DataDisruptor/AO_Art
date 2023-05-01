@@ -333,6 +333,10 @@
 
 /*TODO| Sizing ------------------------------------------------------------------------------------------------------------*/
 
+.align-items-center{
+    align-items: center;
+}
+
 .box-sizing-border{
     box-sizing: border-box;
 }

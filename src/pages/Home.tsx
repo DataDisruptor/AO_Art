@@ -8,13 +8,15 @@ import GenericCanvas from '../components/BackgroundScene/Canvas3D/GenericCanvas'
 import ArchCanvas from '../components/BackgroundScene/Canvas3D/ArchCanvas';
 import X_Scroller from '../components/primitives/scrollers/sideScroller/X_Scroller';
 import MusicPlayer from '../components/primitives/musicPlayer/MusicPlayer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import ContactInfo from '../components/primitives/contactComp/ContactInfo';
 import Footer from '../components/primitives/footer/Footer';
 
 
 
 export default function Home({visibleSection, windowSize} : {visibleSection : string, windowSize: {window_x: number, window_y: number}}) {
+
+  const navigator = useNavigate()
 
   //3d-----------------------------------
 
@@ -80,6 +82,12 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
     visible: false
   })
 
+  const description_Strategize = `Keeping track of multiple projects running at once WHILE having an hyperactive brain can be tough sometimes. This is what Strategize was built for! 
+  As a solution for any individual or team, Strategize was created with the purpose of helping you dive into complex details of any task, while keeping a 
+  birds-eye view over the scope of your entire stretch goals.
+  By dividing your projects into a manageable hierarchy of long term goals, objectives and tasks, Strategize aims to assist you with pushing towards the goals
+  you are set out to accomplish, no matter how long it may take.`
+
   const description_RegimeChange = `We all know that the end of mankind by the machine uprising is getting nearer any day now! 
   So why not glimpse into the future we'll never get to see?
   In early development, Regime Change is a world where authority, rules and power remain - even without any human in sight.`;
@@ -90,8 +98,8 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
       return;
     }
     switch (name){
-      case 'Strategize': setProjectView({name, src: 'strategize_logo2_normal.jpg', link: '', description, visible}); break;
-      case 'Regime Change': setProjectView({name, src: 'RegimeChangeBanner.jpg', link: '', description: description_RegimeChange, visible}); break;
+      case 'Strategize': setProjectView({name, src: 'strategize_logo2_normal.jpg', link: 'https://strategize-fe.vercel.app/', description: description_Strategize, visible}); break;
+      case 'Regime Change': setProjectView({name, src: 'RegimeChangeBanner.jpg', link: '/scavangers.mp4', description: description_RegimeChange, visible}); break;
     }
   }
 
@@ -124,9 +132,9 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
 
   //ABOUT ------------------------------------------------------------------------------------
 
-  const info_0 = ` Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation. <br/>
+  const info_0 = ` Hi, my name is Adam. I am a software engineer and artist with years of experience and an ever growing passion for creation.
   As a little kid, I remember myself forcing my parents to write down stories I came up with before learning how to read and write, and
-  even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. {'(Sorry mom!)'} `;
+  even "accidentally" breaking down toys and electrical devices - completely destroying them - just to see how they were built. (Sorry mom!) `;
   const info_1 = ` Growing up over the years, I had discovered music as a powerful medium through which my urge for creation and conveying stories could be expressed.
   I had studied various instruments in dedication, formed bands and toured at live concerts, studied modern musical production tools and techniques,
   and had the pleasure of composing music for live theatre and contemporary dance routines, as well as the opportunity to pass on my knowledge to
@@ -134,9 +142,9 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
   const info_2 = ` As a detail-oriented individual with strong affinity for technical challenges and critical thinking, I had found myself falling in love with the
   world of software engineering, completely immersed, horrified and amazed by the infinity of possibilities that could be unleashed with programming 
   as a tool at my disposal. My passion for creation has forced me into another endless pursuit, where my new journey began with Game Development in
-  C++ and Unreal Engine, as well as some extensive detours into the realm of Computer Graphics, learning 3D modeling and rendering tools. <br/>
+  C++ and Unreal Engine, as well as some extensive detours into the realm of Computer Graphics, learning 3D modeling and rendering tools.
   As time passed, my interest and curiosity had expanded into numerous development domains, and have successfully completed the Fullstack 
-  web development program at <a>Masterschool</a>, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
+  web development program at Masterschool, an amazingly comprehensive program which I was fortunate to have participated in, where I cultivated
   invaluable programming experience, further pushing the boundaries of my imagination and creativity, demystifying one bug at a time, persistently and 
   steadily, expanding and revealing new horizons within the world of software engineering.`;
 
@@ -150,11 +158,11 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
 
   const [print_shouldUpdate, print_setShouldUpdate] = useState(false);
   const [print_info, print_setInfo] = useState('');
-  const [print_index, print_setIndex] = useState(-1);
+  const [print_index, print_setIndex] = useState(0);
   const [print_iteration, print_setIteration] = useState(-1);
   const [print_text, print_setText] = useState('')
   let Timer : NodeJS.Timer;
-  const printTimer : MutableRefObject<NodeJS.Timer | undefined> = useRef()
+  const printTimer : MutableRefObject<NodeJS.Immediate | undefined> = useRef()
 
   useEffect(()=> {
     print_setIndex(0)
@@ -167,46 +175,46 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
         case 1: print_setInfo(info_1); break;
         case 2: print_setInfo(info_2); break;
       }
-      print_setIteration(0);
+      // print_setIteration(0);
     }
     // else if(print_index > 2) print_setIndex(2);
     // else if( print_index < 0) print_setIndex(0)
   }, [print_index, info_0, info_1, info_2])
 
-  useEffect(() => {
-    if(print_info.length > 0 && print_iteration === 0){
-      print_setShouldUpdate(true);
-    } else {
-      print_setShouldUpdate(false);
-    }
-  }, [print_info, print_iteration])
+  // useEffect(() => {
+  //   if(print_info.length > 0 && print_iteration === 0){
+  //     print_setShouldUpdate(true);
+  //   } else {
+  //     print_setShouldUpdate(false);
+  //   }
+  // }, [print_info, print_iteration])
 
-  useEffect(()=> {
-    if(print_shouldUpdate ){
-      print_setText('');
+  // useEffect(()=> {
+  //   if(print_shouldUpdate ){
+  //     print_setText('');
       
-    }
-  }, [print_shouldUpdate])
+  //   }
+  // }, [print_shouldUpdate])
 
-  useEffect(()=> {
-    if(print_iteration + 1 < print_info.length){
-      print_setIteration(prev => prev + 1);
-    }
-  },[print_text])
+  // useEffect(()=> {
+  //   if(print_iteration + 1 < print_info.length){
+  //     print_setIteration(prev => prev + 1);
+  //   }
+  // },[print_text])
 
   
 
-  useEffect(()=> {
-    // if(print_info[print_iteration] !== undefined)
-    printTimer.current = setTimeout(() => {
-      print_setText(prev => prev + print_info[print_iteration])
-    }, 15)
-    ;
-  }, [print_iteration, print_info])
+  // useEffect(()=> {
+  //   // if(print_info[print_iteration] !== undefined)
+  //   printTimer.current = setImmediate(() => {
+  //     print_setText(prev => prev + print_info[print_iteration])
+  //   })
+  //   ;
+  // }, [print_iteration, print_info])
 
   const handleAboutIndexUpdate = (direction: number) => {
     if (print_index + direction >= 0 && print_index + direction <= 2){
-      clearTimeout(printTimer.current)
+      // clearImmediate(printTimer.current)
       print_setIndex(prev => prev + direction)
     }
   }
@@ -227,14 +235,23 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
             <div className="p5 b-img-title" style={{height:'99vh'}} id='home'>
 
               <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>        
-              <h2 className='font-9 s3 flex f-wrap j-even teal'><span className=''>Tech</span> <span className=''>Art</span></h2>
+              <h2 className='font-9 s3 flex f-wrap j-even'><span className='tech-art'>Tech</span> <span className='tech-art'>Art</span></h2>
 
               <div className='flex f-dir-row j-center mt7 mb7 p5'>
-                <Icon icon='material-symbols:attach-email-outline' className="m3 link-icon"/>
-                <Icon icon='jam:github-square' className="m3 link-icon"/>
-                <Icon icon='ant-design:linkedin-outlined' className="m3 link-icon"/>
-                <Icon icon='academicons:cv-square' className="m3 link-icon"/>
+                <a href='mailto:adamotchery@gmail.com' target='_blank' rel='noreferrer' className="m3">
+                  <Icon icon='material-symbols:attach-email-outline' className="m3 link-icon"/>
+                </a>
+                <a href='https://github.com/adam-ocheri' target='_blank' rel='noreferrer' className="m3">
+                  <Icon icon='jam:github-square' className="m3 link-icon"/>
+                </a>
+                <a href='https://www.linkedin.com/in/adam-ocheri/' target='_blank' rel='noreferrer' className="m3">
+                  <Icon icon='ant-design:linkedin-outlined' className="m3 link-icon"/>
+                </a>
+                <a href='/scavangers.mp4' target='_blank' rel='noreferrer' className="m3">
+                  <Icon icon='academicons:cv-square' className="m3 link-icon"/>
+                </a>
               </div>
+
               <a href={'#about'} className='p6'>
                 <Icon icon='material-symbols:keyboard-arrow-down-rounded' className="m3 down-arrow"/>
               </a>
@@ -247,15 +264,15 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                   <a href='#3d'><button className={`nav-button font-1 s2 btn-middle${ skillView === '3d' ? '' : ''}`} onClick={()=> setSkillView('3d')}>3D Art</button></a>  
                   <a href='#music'><button className={`nav-button font-1 s2 btn-right ${ skillView === 'music' ? '' : ''}`} onClick={()=> setSkillView('music')}>Music</button></a>
                   <div className='flex j-center'>
-                    <article className='about black' style={{minHeight: '70vh'}}>
+                    <article className='pt5 about black' style={{minHeight: '70vh'}}>
                       {/* <img className='m5' src='/about-me.png' alt='about' width={'50%'}/> */}
-                      <h3 className='m6 font-9 s3 teal'>About Me</h3>
-                      <div className='overlay-nav'>
+                      <h3 className='m7 font-7 s4 black'>About Me</h3>
+                      <div className='m7 overlay-nav'>
                         <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => handleAboutIndexUpdate(-1)} />
                         <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'}onClick={() => handleAboutIndexUpdate(1)} />
                       </div>
-                      <p className='p7 font-1 s2 jt-left'>
-                        {print_text}
+                      <p className='m7 p7 font-1 s2 jt-left'>
+                        {print_info}
                       </p>
                       
                       
@@ -282,9 +299,15 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                       <div className={`project-details ${!projectView.visible ? 'details-off' : ''}`} onClick={(e)=>{updateProjectViewState(e)}}>
                         {projectView.visible && 
                           <article className={`project-article article-${projectView.name === 'Strategize' ? 'strategize' : 'regime-change'}`} style={{border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
-                            <h2 className='white font-1 s3 area-text'>{projectView.name}</h2> 
+                            <a className='anchor' href={projectView.link} target='_blank' rel='noreferrer'>
+                              <h2 className='m5 p6 font-1 s3 area-text-n'>
+                                {projectView.name}
+                                <Icon icon='ri:external-link-fill' className="" width={'24px'} style={{margin:'5px'}}/> 
+                              </h2>
+                              
+                            </a> 
                             
-                            <p className='white font-1 s2 area-text'>
+                            <p className='m5 p6 white font-1 s2 area-text'>
                               {projectView.description}
                             </p>
                             {/* <img src={projectView.src} alt={projectView.name} style={{width: '100%', height: '60%'} }/> */}
@@ -307,7 +330,7 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                             </div> */}
                             <p>
                               <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('Strategize', 'stuff..1', true)}/>
-                              <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
+                              <a href='https://strategize-fe.vercel.app/' target='_blank' rel='noreferrer'><Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon' /></a> {/*onClick={()=> {window.location.href = 'https://strategize-fe.vercel.app/'}} */}
                             </p>
                             {/* <a href='https://strategize-fe.vercel.app/'>  </a>  */}
                             <div className="font-1 s1 white jt-left p4"> 
@@ -325,7 +348,9 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                           <article className="p1 entry-article article-regime-change m5">
                             <p>
                               <Icon icon='mdi:information-variant-box' width={'64px'} className='link-icon' onClick={() =>onProjectViewChange('Regime Change', 'stuff..2', true)}/>
-                              <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
+                              <a href='/scavangers.mp4' target='_blank' rel='noreferrer'>
+                                <Icon icon='mdi:link-box-variant' width={'64px'} className='link-icon'/>
+                              </a>
                             </p>
                             {/* <h2 className="entry-title font-3 s2">Regime Change <span className='teal'>|</span> Game</h2>
                             <div className="flex j-center p1" >
@@ -394,8 +419,6 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                             <Icon icon='ic:round-navigate-next' className={`m2 ${ imageView.id === 4 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(1)} />
                           </div>
                           </article>}
-                          
-                          
                       </div>
                       
                       <div className="p5 b-img-1" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
