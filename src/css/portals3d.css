@@ -20,13 +20,13 @@
     cursor: pointer;
 }
 .portal-1{
-    background: url('../../public/lib.png');
+    background: url('../../public/lib.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .portal-2{
-    background: url('../../public/fac.png');
+    background: url('../../public/fac.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
