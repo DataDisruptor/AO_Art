@@ -7,7 +7,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 
 function Model ({ url, onLoad, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1, 1]} : any)  {
-    const gltf : any = useLoader(GLTFLoader, url, (loader) => {
+    const gltf : (GLTF & ObjectMap) | (GLTF & ObjectMap)[] | any = useLoader(GLTFLoader, url, (loader) => {
         const dracoLoader = new DRACOLoader();
         console.log('dracoLoader',dracoLoader);
         dracoLoader.setDecoderPath('/draco/');
@@ -27,7 +27,7 @@ function Model ({ url, onLoad, position = [0, 0, 0], rotation = [0,0,0], scale =
         onLoad();
       }
     }, [isLoaded, onLoad])
-  
+
     //Hook to animation thread - if mesh needs per frame update
     useFrame(({ clock }) => {
       //meshRef.current.rotation.y = clock.getElapsedTime() / 2;  //example
@@ -36,7 +36,7 @@ function Model ({ url, onLoad, position = [0, 0, 0], rotation = [0,0,0], scale =
   
     //JSX
     return (
-      <mesh position={position} rotation={rotation} scale={scale}>
+      <mesh position={position} rotation={rotation} scale={scale} dispose={() => console.log('DestroyMesh',gltf.scene.remove())}>
         <primitive object={gltf.scene}/>
       </mesh> 
       

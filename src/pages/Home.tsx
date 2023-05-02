@@ -282,7 +282,7 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                   </div>
                   <div className='b-img-1 '>  
                     <div style={{position:'relative'}}>
-                      <GenericCanvas/>
+                      {/* <GenericCanvas/> */}
 
                       <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 
                         className={`arch-canvas-overlay ${!canvasOverlay.active ? 'stream-off':''}`}
@@ -294,10 +294,13 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                         {imageView.active && 
                           <article className='project-article' style={{backgroundColor:'black' ,border:'20px solid white', width: '70vw', height: '70vh', position: 'absolute', zIndex: 2}}>
                           <img src={imageView.src} alt='s'  className='nav-img'/>
-                          <div className='overlay-nav'>
-                            <Icon icon='ic:round-navigate-before' className={`m2 ${ imageView.id === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(-1)} />
-                            <Icon icon='ic:round-navigate-next' className={`m2 ${ imageView.id === 4 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(1)} />
-                          </div>
+
+                            <article className='overlay-nav-t'>
+                              <Icon icon='ic:round-navigate-before' className={`m2 ${ imageView.id === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(-1)} />
+                              <Icon icon='ic:round-navigate-next' className={`m2 ${ imageView.id === 4 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => navigateImageGallery(1)} />
+                            </article>
+                          
+
                           </article>}
                       </div>
                       

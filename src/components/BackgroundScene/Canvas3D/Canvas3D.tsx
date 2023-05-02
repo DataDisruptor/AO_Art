@@ -216,7 +216,6 @@ export default function Canvas3D({targetSubScene, renderStartCallback} : {target
   const loadManager : THREE.LoadingManager = THREE.DefaultLoadingManager;
   loadManager.onLoad = () => {
     setLoaded(true);
-    renderStartCallback('RenderStartCallback - OnLoad - Content LOADED!!!')
   };
   loadManager.onProgress = ((url : any)=> {
     // console.log('Currently loading........', url)

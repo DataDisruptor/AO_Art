@@ -95,6 +95,16 @@
     justify-content: space-between;
 }
 
+.overlay-nav-t{
+    margin-top: 50px;
+    display: flex;
+    /* justify-self: center; */
+    justify-content: space-between;
+    /* position: fixed; */
+    transform: translateY(-200px);
+    z-index: 5;
+}
+
 .overlay-nav-btn{
     color:antiquewhite;
     border: 2px solid transparent;
