@@ -282,7 +282,7 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
                   </div>
                   <div className='b-img-1 '>  
                     <div style={{position:'relative'}}>
-                      {/* <GenericCanvas/> */}
+                      <GenericCanvas/>
 
                       <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 
                         className={`arch-canvas-overlay ${!canvasOverlay.active ? 'stream-off':''}`}
