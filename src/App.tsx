@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import GenericOverlay from './components/primitives/overlays/genericOverlay/GenericOverlay';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-scroll';
+import Navbar from './components/primitives/Navbar/Navbar';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
   const handleResize = (e : any) => {
     console.log('RESIZE!', e)
     updateWindowSize({window_x: e.target.innerWidth, window_y: e.target.innerHeight});
-    if(e.target.innerWidth > 700){
+    if(e.target.innerWidth > 500){
       setSV_Visible(false);
     }
     
@@ -61,8 +62,6 @@ function App() {
     const music = document.getElementById('music');
     const contact = document.getElementById('contact');
     const sections : any[] = [home, about, programming, graphics, music, contact];
-
-    const windowHeight = window.innerHeight;
   
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
@@ -90,96 +89,7 @@ function App() {
 
   return (
     <>
-      { window_x <= 500 && <GenericOverlay active={SV_Visible} updateVisibilityState={() => setSV_Visible(false)} visibleSection={visibleSection}/>}
-      <div className='nav'>
-        <img className='logo-img' src='/aologo.png' height='40px' width='45px' alt='logo'/>
-        {window_x > 500 ? 
-        <ul className='navigation'>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="home"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="programming"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              Programming
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="3d"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              3D Art
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="music"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              Music
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='nav-link font-1'
-              activeClass="visible"
-              to="contact"
-              spy={true}
-              smooth={true}
-              offset={-50}
-              duration={700}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul> 
-        : 
-        <div className='small-nav'>
-          {/* <img className='small-nav-img' src='/aologo.png' height='40px' width='45px' alt='nav' onClick={() => {handleSmallNavigation()}}/> */}
-          <Icon icon='fluent:navigation-16-filled' className="m2 small-nav-img" onClick={() => {handleSmallNavigation()}}/>
-        </div>}
-      </div>
+      <Navbar windowSize={windowSize} SV_Visible={SV_Visible} setSV_Visible={setSV_Visible} handleSmallNavigation={handleSmallNavigation} visibleSection={visibleSection}/>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home visibleSection={visibleSection} windowSize={windowSize}/>}/>

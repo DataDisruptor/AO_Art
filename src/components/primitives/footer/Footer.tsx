@@ -11,7 +11,7 @@ export default function Footer() {
         smooth={true}
         offset={-70}
         duration={1000}
-        style={{fontSize: '12pt'}}
+        style={{fontSize: '8pt'}}
       >
         Back To Top
       </Link>
