@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Canvas3D from './components/BackgroundScene/Canvas3D/Canvas3D';
-import LandingCanvas from './components/BackgroundScene/Canvas3D/LandingCanvas';
-import Homepage from './pages/Homepage';
 import Home from './pages/Home';
 import ArchCanvas from './components/BackgroundScene/Canvas3D/ArchCanvas';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';

@@ -186,7 +186,7 @@ const Model3D = ({ url, position = [0, 0, 0], rotation = [0,0,0], scale = [1, 1,
 //https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr
 //HDR_Free_City_Night_Lights_Ref.hdr
 //carpentry_shop_02_1k.hdr
-export default function GenericCanvas() {
+export default function GenericCanvas({hidden} : {hidden: boolean | undefined}) {
   
   // const tjs = useThree();
   
@@ -196,7 +196,7 @@ export default function GenericCanvas() {
     }
   }, [])
     return(
-    <Canvas hidden={false} style={{background: 'black', width: '100%', height: '100%', position: 'absolute', zIndex: -1, display: 'flex', top: 0, left: 0}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
+    <Canvas hidden={hidden} style={{background: 'black', width: '100%', height: '100%', position: 'absolute', zIndex: -1, display: 'flex', top: 0, left: 0}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
       <Environment 
         files="./moonless_golf_1k_2_reverse.hdr" 
         background={true}
