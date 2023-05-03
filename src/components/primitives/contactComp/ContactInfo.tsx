@@ -3,9 +3,9 @@ import React from 'react'
 
 export default function ContactInfo() {
   return (
-    <div className=' swa' style={{border: '5px dashed grey'}} id='contact'>
+    <div className='swa' style={{border: '5px dashed grey'}} id='contact'>
         <h2 className='pt1 pb7 mt7 mb7 black font-7 s4'>CONTACT</h2>
-        <p className='pt5 pb4 mb7 mt7 black font-1 s2'>
+        <p className='p5 mb7 mt7 black font-1 s2'>
         If you want to contact me then please do not hesitate to reach out about anything. <br/>
         I am always open to communication and interesting new cooperations, or even to just random geeky tech/art/life talks! <br/>
         The ascent {'(or downfall)'} of any great empire had most always began with a plain conversation {':)'} 

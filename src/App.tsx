@@ -6,6 +6,7 @@ import ArchCanvas from './components/BackgroundScene/Canvas3D/ArchCanvas';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import GenericOverlay from './components/primitives/overlays/genericOverlay/GenericOverlay';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-scroll';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   const handleResize = (e : any) => {
     console.log('RESIZE!', e)
     updateWindowSize({window_x: e.target.innerWidth, window_y: e.target.innerHeight});
-    if(e.target.innerWidth > 500){
+    if(e.target.innerWidth > 700){
       setSV_Visible(false);
     }
     
@@ -94,12 +95,84 @@ function App() {
         <img className='logo-img' src='/aologo.png' height='40px' width='45px' alt='logo'/>
         {window_x > 500 ? 
         <ul className='navigation'>
-          <li><a href='#home' className={`nav-link font-1 ${visibleSection === 'home' ? 'visible' : ''}`}>Home</a></li>
-          <li><a href='#about' className={`nav-link font-1 ${visibleSection === 'about' ? 'visible' : ''}`}>About</a></li>
-          <li><a href='#programming' className={`nav-link font-1 ${visibleSection === 'programming' ? 'visible' : ''}`}>Programming</a></li>
-          <li><a href='#3d' className={`nav-link font-1 ${visibleSection === '3d' ? 'visible' : ''}`}>3D Art</a></li>
-          <li><a href='#music' className={`nav-link font-1 ${visibleSection === 'music' ? 'visible' : ''}`}>Music</a></li>
-          <li><a href='#contact' className={`nav-link font-1 ${visibleSection === 'contact' ? 'visible' : ''}`}>Contact</a></li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="home"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="programming"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              Programming
+            </Link>
+          </li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="3d"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              3D Art
+            </Link>
+          </li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="music"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              Music
+            </Link>
+          </li>
+          <li>
+            <Link
+              className='nav-link font-1'
+              activeClass="visible"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={700}
+            >
+              Contact
+            </Link>
+          </li>
         </ul> 
         : 
         <div className='small-nav'>

@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-scroll';
 
 export default function AboutInfo() {
     
@@ -44,27 +45,61 @@ export default function AboutInfo() {
       print_setIndex(prev => prev + direction)
     }
   }
+
+  const scrollOptions = {
+  duration: 500,
+  delay: 100,
+  smooth: true,
+  offset: 50
+  }
   
   return (
-    <section className='m5' style={{paddingTop: '15%', paddingBottom:'50%'}}  id='about'>
-                <div>
-                  <a href='#programming'><button className={`nav-button font-1 s2 btn-left `} >Programming</button></a>
-                  <a href='#3d'><button className={`nav-button font-1 s2 btn-middle`} >3D Art</button></a>  
-                  <a href='#music'><button className={`nav-button font-1 s2 btn-right $`} >Music</button></a>
-                  <div className='flex j-center'>
-                    <article className='pt5 about black' style={{minHeight: '70vh'}}>
-                      <h3 className='m7 font-7 s4 black'>About Me</h3>
-                      <div className='m7 overlay-nav'>
-                        <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => handleAboutIndexUpdate(-1)} />
-                        <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'}onClick={() => handleAboutIndexUpdate(1)} />
-                      </div>
-                      <p className='m7 p7 font-1 s2 jt-left black'>
-                        {print_info}
-                      </p>
-                    </article>
-                    
-                  </div>
-                </div>
-              </section>
+    <section className='mt5 mb5 pb5' id='about' style={{paddingTop: '15%', marginBottom: '25%'}}>
+      <div>
+        <Link
+          to="programming"
+          spy={true}
+          smooth={true}
+          offset={-50}
+          duration={500}
+        >
+          <button className={`nav-button font-1 s2 btn-left `}>Programming</button>
+        </Link>
+        
+        <Link
+          to="3d"
+          spy={true}
+          smooth={true}
+          offset={-50}
+          duration={500}
+        >
+          <button className={`nav-button font-1 s2 btn-middle`} >3D Art</button>
+        </Link>
+
+        <Link
+          to="music"
+          spy={true}
+          smooth={true}
+          offset={-50}
+          duration={500}
+        >
+          <button className={`nav-button font-1 s2 btn-right $`} >Music</button>
+        </Link>
+
+        <div className='flex j-center'>
+          <article className='pt5 about black' style={{minHeight: '70vh'}}>
+            <h3 className='m7 font-7 s4 black'>About Me</h3>
+            <div className='m7 overlay-nav'>
+              <Icon icon='ic:round-navigate-before' className={`m2 ${ print_index === 0 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'} onClick={() => handleAboutIndexUpdate(-1)} />
+              <Icon icon='ic:round-navigate-next' className={`m2 ${ print_index === 2 ? 'nav-btn-deactivated' : 'overlay-nav-btn'}`} width={'64px'}onClick={() => handleAboutIndexUpdate(1)} />
+            </div>
+            <p className='m7 p7 font-1 s2 jt-left black'>
+              {print_info}
+            </p>
+          </article>
+          
+        </div>
+      </div>
+    </section>
   )
 }

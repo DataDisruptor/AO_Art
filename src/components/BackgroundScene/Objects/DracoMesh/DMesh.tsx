@@ -36,7 +36,7 @@ function Model ({ url, onLoad, position = [0, 0, 0], rotation = [0,0,0], scale =
   
     //JSX
     return (
-      <mesh position={position} rotation={rotation} scale={scale} dispose={() => console.log('DestroyMesh',gltf.scene.remove())}>
+      <mesh position={position} rotation={rotation} scale={scale} dispose={() => gltf.scene.remove()}>
         <primitive object={gltf.scene}/>
       </mesh> 
       
