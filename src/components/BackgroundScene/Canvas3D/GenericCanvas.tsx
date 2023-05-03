@@ -196,7 +196,7 @@ export default function GenericCanvas({hidden} : {hidden: boolean | undefined}) 
     }
   }, [])
     return(
-    <Canvas hidden={hidden} style={{background: 'black', width: '100%', height: '100%', position: 'absolute', zIndex: -1, display: 'flex', top: 0, left: 0}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
+    <Canvas hidden={true} style={{background: 'black', width: '100%', height: '100%', position: 'absolute', zIndex: -1, display: 'flex', top: 0, left: 0}}>{/* style={{ width: '90%', height: '40vh', display: 'flex', margin: '3%'}} */}
       <Environment 
         files="./moonless_golf_1k_2_reverse.hdr" 
         background={true}
