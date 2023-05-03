@@ -21,6 +21,7 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
 
             <section>
               <AboutInfo/>
+              
               <article className="nav-area black" id='skills-article'>
                 <Programming/> 
                 <Art3D windowSize={windowSize}/>               
