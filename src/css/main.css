@@ -426,6 +426,13 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
     /* */
 }
 
+.cg-back{
+    background: url('../../public/3d-back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
 .b-img-title{
     /* background: url('../../public/b3-2.jpg');
     background-repeat: no-repeat;

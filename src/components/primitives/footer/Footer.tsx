@@ -9,7 +9,7 @@ export default function Footer() {
         to="home"
         spy={false}
         smooth={true}
-        offset={-70}
+        offset={-50}
         duration={1000}
         style={{fontSize: '8pt'}}
       >

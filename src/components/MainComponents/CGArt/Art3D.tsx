@@ -82,7 +82,7 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
             <img className='skill-img' src='/skill_3d.png' alt='3d art'/>
         </div>
         <div >  
-            <div style={{position:'relative'}}>
+            <div style={{position:'relative'}} className='cg-back'>
             <GenericCanvas hidden={canvasOverlay.active}/>
 
             <div onMouseDown={(e)=> {updateCanvasStreamState(e)}} 

@@ -14,6 +14,13 @@ export default function Music() {
             
             </p>
         </div>
+
+        {/* <div className='flex j-center jt-center'>
+            <h3 className='m6 font-9 s3 teal'>Solicited Work</h3>
+        </div>
+        <iframe className='vid-frame' src="https://www.youtube.com/embed/dolKQ_iA-tY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+         */}
+        
         <div className='flex j-center jt-center'>
             {/* <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/> */}
             <h3 className='m6 font-9 s3 teal'>Originals</h3>
