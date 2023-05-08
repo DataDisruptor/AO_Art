@@ -23,12 +23,12 @@ export default function Music() {
         
         <div className='flex j-center jt-center'>
             {/* <img style={{minWidth: '300px', width: '30vw'}} src='/OriginalMusic2.png' alt='music'/> */}
-            <h3 className='m6 font-9 s3 teal'>Originals</h3>
+            <h3 className='m6 font-9 s3 white'>Originals</h3>
         </div>
         <MusicPlayer/>
         <div className='flex j-center jt-center'>
             {/* <img style={{minWidth: '300px', width: '30vw'}} src='/Tributes.png' alt='music'/> */}
-            <h3 className='m6 font-9 s3 teal'>Tributes</h3>
+            <h3 className='m6 font-9 s3 white'>Tributes</h3>
         </div>
         
         <iframe className='vid-frame' src="https://www.youtube.com/embed/5RbIy67mfII" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

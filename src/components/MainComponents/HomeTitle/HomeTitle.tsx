@@ -4,7 +4,7 @@ import { Link } from 'react-scroll'
 
 export default function HomeTitle() {
   return (
-    <div className="p5 b-img-title" style={{height:'99vh'}} id='home'>
+    <div className="p5 b-img-title" id='home'>
 
         <h1 className='font-9 s-vw1 main-title'>Adam Ocheri</h1>        
         <h2 className='font-9 s3 flex f-wrap j-even'><span className='tech-art'>Tech</span> <span className='tech-art'>Art</span></h2>

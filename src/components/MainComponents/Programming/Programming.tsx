@@ -72,7 +72,7 @@ export default function Programming() {
                           </p>
 
                           <div className='flex j-center jt-center'>
-                            <h3 className='m6 font-9 s3 teal'>Personal Projects</h3>
+                            <h3 className='m6 font-9 s3 white'>Personal Projects</h3>
                           </div>
                           <section className='flex f-dir-row f-wrap j-center'>
 

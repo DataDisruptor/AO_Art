@@ -16,7 +16,7 @@ body {
     color: rgb(246, 246, 241);
     margin: 0;
     padding: 0;
-    background-color: rgb(31, 29, 29);
+    background-color: rgb(0, 0, 0);
     /* overflow: hidden; */
     /* background: url('../../public/b3.jpg');
     background-repeat: no-repeat;
@@ -44,7 +44,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 }
 
 .nav{
-    background-color: black;
+    background-color: rgb(22, 21, 21);
     height: 50px;
     width: 100%;
     position: fixed;
@@ -111,7 +111,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 .nav-link{
     text-decoration: none;
     text-decoration-line: none ;
-    background-color: #000000;
+    background-color: rgb(22, 21, 21);
     padding: 5px;
     border-radius: 10px;
     transition: all 0.2s ease-in-out;
@@ -181,14 +181,14 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
     
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: aqua;
+    color: rgb(0, 0, 0);
     /* For WebKit/Blink */
-    -webkit-text-stroke: 2.3px rgb(0, 0, 0);
+    -webkit-text-stroke: 2.3px rgb(126, 255, 253);
 
     /* For Firefox */
-    text-stroke: 2.3px rgb(0, 0, 0);
+    text-stroke: 2.3px rgb(126, 255, 253);
     -webkit-text-stroke-width: 1.1px;
-    -webkit-text-fill-color: aqua;
+    -webkit-text-fill-color: rgb(0, 0, 0);
 }
 
 
@@ -434,10 +434,11 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 }
 
 .b-img-title{
-    /* background: url('../../public/b3-2.jpg');
+    background: url('../../public/title-back.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center; */
+    background-position: top center;
+    min-height: 150vh;
     /* background-color: rgba(240, 248, 255, 0); */
     /* background-image: linear-gradient(to bottom, #5151517d, #5352526f, #4141413d, #1c1c1c32, #07070700); */
 }

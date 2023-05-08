@@ -94,7 +94,7 @@ export default function MusicPlayer() {
   return (
     <div className="component" >
       <h2 className={isPlaying ? 'play-status-on' : 'play-status-off'}>Now Playing</h2>
-      <img className="musicCover" src="/cps.jpg" height={'128px'} width={'128px'} alt="nomeaning"/>
+      <img className="musicCover" src="/title-back.jpg" height={'128px'} width={'128px'} alt="nomeaning"/>
       <div>
         <h3 className="title">{songName}</h3>
         <p className="subTitle">Adam</p>

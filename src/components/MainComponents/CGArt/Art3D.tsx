@@ -105,7 +105,7 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
                 </article>}
             </div>
             
-            <div className="p5 b-img-1" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
+            <div className="p5" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
                 <article className="font-1 s2 area-text p3 m2"> 
                 <div className='flex j-center'>
                     
