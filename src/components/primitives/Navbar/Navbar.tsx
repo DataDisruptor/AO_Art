@@ -47,7 +47,7 @@ export default function Navbar({windowSize, SV_Visible, setSV_Visible, handleSma
               to="programming"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-150}
               duration={700}
             >
               Programming
@@ -60,7 +60,7 @@ export default function Navbar({windowSize, SV_Visible, setSV_Visible, handleSma
               to="3d"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-150}
               duration={700}
             >
               3D Art
@@ -73,7 +73,7 @@ export default function Navbar({windowSize, SV_Visible, setSV_Visible, handleSma
               to="music"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-150}
               duration={700}
             >
               Music
@@ -86,7 +86,7 @@ export default function Navbar({windowSize, SV_Visible, setSV_Visible, handleSma
               to="contact"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-150}
               duration={700}
             >
               Contact

@@ -5,6 +5,7 @@ import Programming from '../components/MainComponents/Programming/Programming';
 import Art3D from '../components/MainComponents/CGArt/Art3D';
 import Music from '../components/MainComponents/Music/Music';
 import HomeTitle from '../components/MainComponents/HomeTitle/HomeTitle';
+import HeightSpacer from '../components/primitives/spacers/HeightSpacer';
 
 
 
@@ -23,8 +24,11 @@ export default function Home({visibleSection, windowSize} : {visibleSection : st
               <AboutInfo/>
               
               <article className="nav-area black" id='skills-article'>
+                <HeightSpacer/>
                 <Programming/> 
-                <Art3D windowSize={windowSize}/>               
+                <HeightSpacer/>
+                <Art3D windowSize={windowSize}/>  
+                <HeightSpacer/>             
                 <Music/>    
               </article>  
               

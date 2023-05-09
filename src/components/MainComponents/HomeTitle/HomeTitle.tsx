@@ -19,7 +19,7 @@ export default function HomeTitle() {
             <a href='https://www.linkedin.com/in/adam-ocheri/' target='_blank' rel='noreferrer' className="m3">
                 <Icon icon='ant-design:linkedin-outlined' className="m3 link-icon"/>
             </a>
-            <a href='/scavangers.mp4' target='_blank' rel='noreferrer' className="m3">
+            <a href='/Adam Ocheri - Resume 2023.pdf' target='_blank' rel='noreferrer' className="m3">
                 <Icon icon='academicons:cv-square' className="m3 link-icon"/>
             </a>
         </div>

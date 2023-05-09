@@ -62,7 +62,7 @@
     font-size: 12pt;
 }
 .s2{
-    font-size: 16pt;
+    font-size: 14pt;
 }
 .s3{
     font-size: 28pt;
@@ -128,4 +128,6 @@
 .teal{
     color: rgb(20, 243, 255);
 }
-
+.gold{
+    color: #fdc700;
+}

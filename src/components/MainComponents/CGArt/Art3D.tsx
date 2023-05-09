@@ -6,15 +6,34 @@ import ArchCanvas from '../../BackgroundScene/Canvas3D/ArchCanvas'
 
 export default function Art3D({windowSize} : {windowSize: {window_x:number, window_y:number}}) {
 
-    const [imageView, setImageView] = useState({
+      const [imageView, setImageView] = useState({
         id: -1,
         active: false,
         src: ''
       })
+
+      const [imgFMT, setImgFMT] = useState('normal');
+
+
     
       const onImageViewChange = (id : any, active : boolean, src : string) => {
         setImageView({id, active, src});
       }
+
+      useEffect(()=> {
+        adjustToWindowSize();
+      }, [windowSize])
+
+      useEffect(()=> {
+        if (imageView.active){
+          setImageView((prev) => ({
+            ...prev,
+            src: `hs-imgs/e${imageView.id + 1}-${imgFMT}.jpg`
+          }));
+        }
+      }, [imgFMT])
+
+      
     
       const updateImageView = (e : any) => {
         console.log(e)
@@ -22,29 +41,34 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
           setImageView({id: -1, active: false, src: ''});
         }
       }
+
+      const adjustToWindowSize = () => {
+          let imgFormat = ''
+          
+          if (windowSize.window_x >= 1920){
+            imgFormat = 'max'
+          }
+          else if (windowSize.window_x >= 1300){
+            imgFormat = 'normal'
+          }
+          else if (windowSize.window_x >= 1000){
+            imgFormat = 'square'
+          }
+          else if (windowSize.window_x < windowSize.window_y){
+            imgFormat = 'mobile'
+          }
+          else{
+            imgFormat = 'normal'
+          }
+          setImgFMT(imgFormat);
+          return imgFormat;
+      }
     
       const navigateImageGallery = (direction: number) => {
     
         if (imageView.id + direction >= 0 && imageView.id + direction <= 4){
-          let imgFMT = ''
-          console.log('windowSize', windowSize)
-          
-          if (windowSize.window_x >= 1920){
-            imgFMT = 'max'
-          }
-          else if (windowSize.window_x >= 1300){
-            imgFMT = 'normal'
-          }
-          else if (windowSize.window_x >= 1000){
-            imgFMT = 'square'
-          }
-          else if (windowSize.window_x < windowSize.window_y){
-            imgFMT = 'mobile'
-          }
-          else{
-            imgFMT = 'normal'
-          }
-          
+
+          let imgFMT = adjustToWindowSize();
           
           console.log(imgFMT)
           setImageView((prev) => ({
@@ -106,7 +130,7 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
             </div>
             
             <div className="p5" style={{backgroundColor: 'rgba(240, 248, 255, 0.00)'}}>
-                <article className="font-1 s2 area-text p3 m2"> 
+                <article className="font-1 s2 area-text p1 m2"> 
                 <div className='flex j-center'>
                     
                 </div>
@@ -121,20 +145,20 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
                 {/* <img onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}}  src="3d2.png" alt="img" className="hero-img m2"/>
                 <img onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} src="3d1.png" alt="img" className="hero-img m2"/> */}
                 <section className='tour-img-container'>
-                <div onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} className='m5 portal-3d portal-1'>
+                <div onClick={() => {streamCanvasOverlay({canvasId: 'library', active: true})}} className='m2 portal-3d portal-1'>
                     <p className='font-9 teal'>
                     TAKE A TOUR
                     </p>
                 </div>
 
-                <div onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}} className='m5 portal-3d portal-2'>
+                <div onClick={() => {streamCanvasOverlay({canvasId: 'factory', active: true})}} className='m2 portal-3d portal-2'>
                     <p className='font-9 teal'>
                     TAKE A TOUR
                     </p>
                 </div>
                 </section>
 
-                <article className="font-1 s2 area-text p3 m2">                        
+                <article className="font-1 s2 area-text p3 m7">                        
                 Earnestly learning more, with a longstanding awe, I am constantly honing numerous Computer Graphics skills, aiming towards the 3D Generalist 
                 approach. The inter-connectivity of the plethora of sub-domains in CG means I can not and will not commit to pursuing specific mastery and 
                 proficiency in none of these sub domains - since they are all equally fascinating and paramount for any 3D rendering production pipeline.
@@ -142,7 +166,7 @@ export default function Art3D({windowSize} : {windowSize: {window_x:number, wind
                     {/* <GenericCanvas/> */}
                 </div>
                 </article>
-                <X_Scroller onImageViewChange={onImageViewChange} imageView={imageView}/>
+                <X_Scroller onImageViewChange={onImageViewChange} imageView={imageView} imgFormat={imgFMT}/>
                 {/* <a href="/#"> Portfolio </a> */}
             </div>
             <p className="font-6 p2 s1 area-text-skills flex f-wrap j-even">

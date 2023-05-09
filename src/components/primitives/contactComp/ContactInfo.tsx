@@ -19,28 +19,28 @@ export default function ContactInfo() {
             <a href='mailto:adamotchery@gmail.com' target='_blank' rel='noreferrer' className="m1">
               <Icon icon='material-symbols:attach-email-outline' className="m1 link-icon-dark"/>
             </a>
-            <h3 className='teal font-3'>adamotchery@gmail.com</h3>
+            <h3 className='gold font-3'>adamotchery@gmail.com</h3>
           </div>
           
           <div className="contact-box p1 m1 flex f-dir-col align-items-center">
             <a href='https://github.com/adam-ocheri' target='_blank' rel='noreferrer' className="m1">
               <Icon icon='jam:github-square' className="m1 link-icon-dark"/>
             </a>
-            <h3 className='teal font-3'>github.com/adam-ocheri</h3>
+            <h3 className='gold font-3'>github.com/adam-ocheri</h3>
           </div>
 
           <div className="contact-box p1 m1 flex f-dir-col align-items-center">
             <a href='https://www.linkedin.com/in/adam-ocheri/' target='_blank' rel='noreferrer' className="m1">
               <Icon icon='ant-design:linkedin-outlined' className="m1 link-icon-dark"/>
             </a>
-            <h3 className='teal font-3'>linkedin.com/in/adam-ocheri</h3>
+            <h3 className='gold font-3'>linkedin.com/in/adam-ocheri</h3>
           </div>
 
           <div className="contact-box p1 m1 flex f-dir-col align-items-center">
-            <a href='/scavangers.mp4' target='_blank' rel='noreferrer' className="m1">
+            <a href='/Adam Ocheri - Resume 2023.pdf' target='_blank' rel='noreferrer' className="m1">
               <Icon icon='academicons:cv-square' className="m1 link-icon-dark"/>
             </a>
-            <h3 className='teal font-3'>Resume</h3>
+            <h3 className='gold font-3'>Resume</h3>
           </div>
 
         </section>

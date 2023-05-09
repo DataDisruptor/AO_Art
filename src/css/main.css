@@ -44,7 +44,7 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 }
 
 .nav{
-    background-color: rgb(22, 21, 21);
+    background-color: rgb(29, 27, 27);
     height: 50px;
     width: 100%;
     position: fixed;
@@ -111,11 +111,15 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 .nav-link{
     text-decoration: none;
     text-decoration-line: none ;
-    background-color: rgb(22, 21, 21);
+    background-color: rgb(29, 27, 27);
     padding: 5px;
     border-radius: 10px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    /* height: 100%; */
+}
+.nav-link:hover{
+    background-color: rgb(12, 12, 12);
 }
 
 .visible{
@@ -572,8 +576,8 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
 @media (min-width: 1801px) {
     .skill-icon{
-        height: 128px;
-        width: 128px;
+        height: 96px;
+        width: 96px;
     }
     .skill-img-container{
 
@@ -586,16 +590,16 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
 @media (max-width: 1800px) {
     .skill-icon{
-        height: 112px;
-        width: 112px;
+        height: 90px;
+        width: 90px;
     }
     
 }
 
 @media (max-width: 1400px) {
     .skill-icon{
-        height: 100px;
-        width: 100px;
+        height: 88px;
+        width: 88px;
     }
     
 }
@@ -609,8 +613,8 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
 @media (max-width: 1000px) {
     .skill-icon{
-        height: 94px;
-        width: 94px;
+        height: 86px;
+        width: 86px;
     }
     
     .portal-3d{
@@ -642,8 +646,8 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 
 @media (max-width: 700px) {
     .skill-icon{
-        height: 88px;
-        width: 88px;
+        height: 64px;
+        width: 64px;
     }
     .main-title{
         font-size: 90pt;
@@ -695,6 +699,10 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
 }
 
 @media (max-width: 550px) {
+    .skill-icon{
+        height: 52px;
+        width: 52px;
+    }
     .skill-img{
         width: 450px;
     }
@@ -760,6 +768,10 @@ a:active { text-decoration: none; color: rgb(15, 111, 111) }
     }
 }
 @media (max-width: 400px) {
+    .skill-icon{
+        height: 46px;
+        width: 46px;
+    }
     .skill-img{
         width: 350px;
     }
@@ -895,7 +907,7 @@ height: 100%;
     width: 30vw;
     padding: 25px;
     min-width: 240px;
-    min-height: 120px;
+    min-height: 200px;
 }
 
 .lnk{
